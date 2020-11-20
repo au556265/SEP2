@@ -1,5 +1,9 @@
 package FoodByVIA.Client.Network.AddMenu;
 
-public interface AddMenuClient
+import FoodByVIA.Shared.Util.PropertyChangeSubject;
+
+public interface AddMenuClient extends PropertyChangeSubject
 {
+
+
 }
