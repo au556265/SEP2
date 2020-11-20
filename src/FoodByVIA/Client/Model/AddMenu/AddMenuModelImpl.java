@@ -1,9 +1,6 @@
 package FoodByVIA.Client.Model.AddMenu;
 
-import FoodByVIA.Client.Network.AddMenu.AddMenuClient;
-
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+import FoodByVIA.Client.Network.AddMenu.AddMenu.AddMenuClient;
 
 public class AddMenuModelImpl implements AddMenuModel
 {
