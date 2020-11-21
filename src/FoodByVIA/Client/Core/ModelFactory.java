@@ -13,7 +13,7 @@ public class ModelFactory
     this.cf = cf;
   }
 
-  @SuppressWarnings("WeakerAccess") public AddMenuModel getClientModel()
+  public AddMenuModel getClientModel()
   {
     if(clientModel == null)
     {

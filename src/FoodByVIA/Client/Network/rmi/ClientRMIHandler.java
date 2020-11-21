@@ -1,10 +1,7 @@
 package FoodByVIA.Client.Network.rmi;
 
-package main.client.clientNetworking.rmi;
-
 import FoodByVIA.Shared.FoodItem;
 
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.ConnectException;
 import java.rmi.NotBoundException;
@@ -12,8 +9,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList
-public class ClientRMIHandler implements RemoteSender
+//import java.util.ArrayList
+/*public class ClientRMIHandler implements RemoteSender
 {
 
   private RemoteCommandList rml;
@@ -52,4 +49,4 @@ public class ClientRMIHandler implements RemoteSender
       }
     }
   }
-}
+}*/

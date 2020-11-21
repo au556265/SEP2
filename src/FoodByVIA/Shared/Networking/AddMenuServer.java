@@ -1,5 +1,6 @@
 package FoodByVIA.Shared.Networking;
 
+import FoodByVIA.Shared.FoodItem;
 import FoodByVIA.Shared.Menu;
 
 import java.rmi.Remote;
@@ -8,8 +9,6 @@ import java.util.List;
 
 public interface AddMenuServer extends Remote
 {
-   void addFoodItem(String name, double price, String description) throws
+   void addFoodItem(FoodItem item) throws
        RemoteException;
-   List<Menu> getMenu() throws RemoteException;
-   void registerClient (AddMenuCallBack menu)throws RemoteException;
 }

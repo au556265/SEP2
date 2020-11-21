@@ -1,6 +1,7 @@
 package FoodByVIA.Client.Model.AddMenu;
 
 import FoodByVIA.Client.Network.AddMenu.AddMenu.AddMenuClient;
+import FoodByVIA.Shared.FoodItem;
 
 public class AddMenuModelImpl implements AddMenuModel
 {
@@ -13,6 +14,7 @@ public class AddMenuModelImpl implements AddMenuModel
   @Override public void addFoodItem(String name, double price,
       String description)
   {
-   client.addFoodItem(name,price,description);
+    FoodItem item = new FoodItem(name, price, description);
+   client.addFoodItem(item);
   }
 }

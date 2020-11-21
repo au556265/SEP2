@@ -3,7 +3,7 @@ package FoodByVIA.Client.View.addMenu;
 import FoodByVIA.Client.Model.AddMenu.AddMenuModel;
 import javafx.beans.property.*;
 
-@SuppressWarnings("WeakerAccess") public class AddMenuViewModel
+public class AddMenuViewModel
 {
   private AddMenuModel model;
   private StringProperty name;

@@ -12,7 +12,7 @@ public class ViewModelFactory
     this.mf = mf;
   }
 
-  @SuppressWarnings("WeakerAccess") public AddMenuViewModel getAddMenuViewModel() {
+  public AddMenuViewModel getAddMenuViewModel() {
     if(addMenuViewModel == null) {
       addMenuViewModel = new AddMenuViewModel(mf.getClientModel());
     }

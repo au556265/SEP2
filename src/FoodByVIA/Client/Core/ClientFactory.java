@@ -5,14 +5,14 @@ import FoodByVIA.Client.Network.AddMenu.AddMenu.AddMenuClientImpl;
 
 public class ClientFactory
 {
-  private AddMenuClient client;
+  private AddMenuClient addMenuclient;
 
-  @SuppressWarnings("WeakerAccess") public AddMenuClient getAddMenuClient()
+ public AddMenuClient getAddMenuClient()
   {
-    if(client == null)
+    if(addMenuclient == null)
     {
-      client = new AddMenuClientImpl();
+      addMenuclient = new AddMenuClientImpl();
     }
-    return client;
+    return addMenuclient;
   }
 }

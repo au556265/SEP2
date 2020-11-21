@@ -19,7 +19,6 @@ public class ViewHandler
   {
     this.vmf = vmf;
     mainStage = new Stage();
-
   }
 
   public void start()
@@ -28,7 +27,7 @@ public class ViewHandler
     mainStage.show();
   }
 
-  @SuppressWarnings("WeakerAccess") public void openAddMenuView() {
+  public void openAddMenuView() {
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("FoodByVIA.Client.View.addMenu.AddMenuViewController"));
     try {

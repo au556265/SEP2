@@ -13,22 +13,14 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddMenuServerImpl extends StartServer implements AddMenuServer
+public class AddMenuServerImpl implements AddMenuServer
 {
   private AddMenuServerModel model;
-  private List<AddMenuCallBack> clients;
 
   public AddMenuServerImpl(AddMenuServerModel model) throws RemoteException
   {
     UnicastRemoteObject.exportObject(this, 0);
     this.model = model;
-    clients = new ArrayList<>();
-  }
-
-  public void startServer() throws RemoteException, AlreadyBoundException
-  {
-    Registry registry = LocateRegistry.createRegistry(1099);
-    registry.bind("Server", this);
   }
 
   @Override public void addFoodItem(FoodItem item)

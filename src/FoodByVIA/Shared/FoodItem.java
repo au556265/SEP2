@@ -12,4 +12,29 @@ public class FoodItem
     this.price = price;
     this.description = description;
   }
+
+  public void setPrice(double price)
+  {
+    this.price= price;
+  }
+
+  public String getName()
+  {
+    return name;
+  }
+
+  public double getPrice()
+  {
+    return price;
+  }
+
+  public String getDescription()
+  {
+    return description;
+  }
+
+  public String toString()
+  {
+    return name + " " + price + " " + description;
+  }
 }

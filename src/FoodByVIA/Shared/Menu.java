@@ -1,20 +1,66 @@
 package FoodByVIA.Shared;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Menu extends FoodItem
+public class Menu
 {
-  ArrayList<FoodItem> Menu;
+  private List<FoodItem> items;
+  private int size;
+  private static Menu instance;
 
-  public Menu(String name, double price, String description)
+  private Menu()
   {
-    super(name, price, description);
+    items = new ArrayList<>();
   }
 
-  void addFoodItem(FoodItem item)
+  public static Menu getInstance()
   {
-      Menu.add(item);
+    if(instance == null)
+    {
+      instance = new Menu();
+    }
+    return instance;
   }
 
-  String getMenu;
+  public void addFoodItem(FoodItem item)
+  {
+    items.add(item);
+    size++;
+  }
+
+  public void removeItem(FoodItem item)
+  {
+    items.remove(item);
+    size--;
+  }
+
+  public int getSize()
+  {
+    return size;
+  }
+
+  public FoodItem getItem(String name)
+  {
+    FoodItem result = null;
+    for(FoodItem item : items)
+    {
+      if(item.getName().equals(name))
+      {
+        result = item;
+        break;
+      }
+    }
+    return result;
+  }
+
+  public String toString()
+  {
+    String result = "";
+    for (FoodItem item : items)
+    {
+      result += item + "\n";
+    }
+    return result;
+  }
 }
