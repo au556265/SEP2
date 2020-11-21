@@ -11,4 +11,5 @@ public interface AddMenuServer extends Remote
 {
    void addFoodItem(FoodItem item) throws
        RemoteException;
+   void registerClient(AddMenuCallBack client) throws RemoteException;
 }

@@ -38,7 +38,6 @@ public class AddMenuViewModel
     if ((inputName != null && !"".equals(inputName)) && inputPrice != 0)
     {
       model.addFoodItem(inputName, inputPrice, inputDescription);
-
     }
   }
 
