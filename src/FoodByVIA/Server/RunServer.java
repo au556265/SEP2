@@ -1,25 +1,17 @@
 package FoodByVIA.Server;
 
-
-import FoodByVIA.Server.Core.ServerFactory;
-import FoodByVIA.Server.Core.ServerModelFactory;
+import FoodByVIA.Server.Model.AddMenu.AddMenuServerModelImpl;
+import FoodByVIA.Server.Network.AddMenuServerImpl;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 
 public class RunServer
 {
   public static void main(String[] args)
-      throws RemoteException, AlreadyBoundException
+      throws RemoteException
   {
-    ServerModelFactory modelFactory = new ServerModelFactory();
-    ServerFactory serverFactory = new ServerFactory(modelFactory);
-
-    Registry registry = LocateRegistry.createRegistry(1099);
-    registry.bind("Server", serverFactory);
-
-
+    AddMenuServerImpl addMenuServer = new AddMenuServerImpl(new AddMenuServerModelImpl());
+    addMenuServer.start();
   }
 }

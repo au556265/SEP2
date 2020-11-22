@@ -1,9 +1,10 @@
 package FoodByVIA.Shared;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu
+public class Menu implements Serializable
 {
   private List<FoodItem> items;
   private int size;

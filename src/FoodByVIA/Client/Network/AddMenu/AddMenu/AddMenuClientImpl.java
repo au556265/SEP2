@@ -1,5 +1,7 @@
 package FoodByVIA.Client.Network.AddMenu.AddMenu;
 
+import FoodByVIA.Server.Model.AddMenu.AddMenuServerModel;
+import FoodByVIA.Server.Network.AddMenuServerImpl;
 import FoodByVIA.Shared.FoodItem;
 import FoodByVIA.Shared.Menu;
 import FoodByVIA.Shared.Networking.AddMenuCallBack;
@@ -15,17 +17,15 @@ public class AddMenuClientImpl implements AddMenuClient, AddMenuCallBack
 {
   private AddMenuServer addMenuServer;
 
-  public AddMenuClientImpl()
-  {
-  }
-
   @Override public void startClient()
   {
    try
    {
      UnicastRemoteObject.exportObject(this, 0);
      Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-     addMenuServer = (AddMenuServer) registry.lookup("Server");
+     addMenuServer = (AddMenuServer) registry.lookup("AddMenuServer");
+    // addMenuServer.registerClient(this);
+     System.out.println("Server Connected");
    }
    catch (RemoteException | NotBoundException e)
    {
@@ -45,8 +45,8 @@ public class AddMenuClientImpl implements AddMenuClient, AddMenuCallBack
     }
   }
 
-  @Override public void update(Menu menu)
+  @Override public void update(FoodItem item)
   {
-    //need to figure out
+
   }
 }
