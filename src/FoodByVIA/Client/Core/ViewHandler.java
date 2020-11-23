@@ -11,6 +11,7 @@ import java.io.IOException;
 public class ViewHandler
 {
   private Scene addMenuScene;
+  private Scene registerUserScene;
   private Stage mainStage;
 
   private ViewModelFactory vmf;
@@ -23,7 +24,7 @@ public class ViewHandler
   public void start()
   {
     mainStage = new Stage();
-    openAddMenuView();
+    openRegisterUserView();
   }
 
   private Parent loadFXML(String path) throws IOException
@@ -54,6 +55,26 @@ public class ViewHandler
       mainStage.setTitle("Add Menu");
     }
     mainStage.setScene(addMenuScene);
+    mainStage.show();
+  }
+
+  public void openRegisterUserView()
+  {
+    if(registerUserScene == null)
+    {
+      try
+      {
+        Parent root = loadFXML("../View/RegisterUser/RegisterUser.fxml");
+
+        registerUserScene = new Scene(root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+      mainStage.setTitle("Register User");
+    }
+    mainStage.setScene(registerUserScene);
     mainStage.show();
   }
 

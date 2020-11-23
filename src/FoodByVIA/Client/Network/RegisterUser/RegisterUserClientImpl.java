@@ -1,5 +1,16 @@
 package FoodByVIA.Client.Network.RegisterUser;
 
-public class RegisterUserClientImpl
+import FoodByVIA.Shared.User;
+
+public class RegisterUserClientImpl implements RegisterUserClient
 {
+  @Override public void addUser(User user)
+  {
+
+  }
+
+  @Override public void startClient()
+  {
+
+  }
 }
