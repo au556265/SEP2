@@ -8,12 +8,14 @@ public class AddMenuViewModel
   private AddMenuModel model;
   private StringProperty name;
   private StringProperty description;
+  private StringProperty message;
   private  DoubleProperty price;
 
   public AddMenuViewModel(AddMenuModel model){
     name = new SimpleStringProperty();
     description  = new SimpleStringProperty();
     price = new SimpleDoubleProperty();
+    message = new SimpleStringProperty();
     this.model=model;
   }
 
@@ -38,7 +40,13 @@ public class AddMenuViewModel
     if ((inputName != null && !"".equals(inputName)) && inputPrice != 0)
     {
       model.addFoodItem(inputName, inputPrice, inputDescription);
+      message.setValue("Item Added");
     }
+    else
+    {
+      message.setValue("Name or Price fields cannot be empty");
+    }
+    clear();
   }
 
   public void clear(){
@@ -46,10 +54,10 @@ public class AddMenuViewModel
     name.set("");
     description.set("");
     price.set(0);
-
   }
 
-
-
-
+  public StringProperty getMessage()
+  {
+    return message;
+  }
 }

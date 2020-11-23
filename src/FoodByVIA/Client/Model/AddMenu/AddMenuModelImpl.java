@@ -6,6 +6,7 @@ import FoodByVIA.Shared.FoodItem;
 public class AddMenuModelImpl implements AddMenuModel
 {
   private AddMenuClient client;
+
   public AddMenuModelImpl(AddMenuClient client) {
     this.client=client;
     client.startClient();

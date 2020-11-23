@@ -6,6 +6,7 @@ import FoodByVIA.Client.View.ViewController;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
@@ -18,20 +19,10 @@ public class AddMenuViewController implements ViewController
   public TextField foodPriceID;
   @FXML
   public TextField foodDescriptionID;
+  public Label messageField;
 
   private AddMenuViewModel addMenuViewModel;
   private ViewHandler vh;
-
-  public void init(ViewHandler vh, AddMenuViewModel addMenuViewModel)
-  {
-    this.addMenuViewModel=addMenuViewModel;
-    this.vh=vh;
-    StringConverter<Number> converter = new NumberStringConverter();
-    foodNameID.textProperty().bindBidirectional(addMenuViewModel.getName());
-    /*need a method that can change the binding from StringProperty to DoubleProperty*/
-    foodPriceID.textProperty().bindBidirectional(addMenuViewModel.getPrice(),converter);
-    foodDescriptionID.textProperty().bindBidirectional(addMenuViewModel.getDescription());
-  }
 
   @FXML
   public void addMenuButton(ActionEvent actionEvent)
@@ -49,11 +40,12 @@ public class AddMenuViewController implements ViewController
   @Override public void init(ViewHandler vh, ViewModelFactory vmf)
   {
     addMenuViewModel = vmf.getAddMenuViewModel();
-    this.vh=vh;
+    this.vh = vh;
     StringConverter<Number> converter = new NumberStringConverter();
     foodNameID.textProperty().bindBidirectional(addMenuViewModel.getName());
     /*need a method that can change the binding from StringProperty to DoubleProperty*/
     foodPriceID.textProperty().bindBidirectional(addMenuViewModel.getPrice(),converter);
     foodDescriptionID.textProperty().bindBidirectional(addMenuViewModel.getDescription());
+    messageField.textProperty().bindBidirectional(addMenuViewModel.getMessage());
   }
 }
