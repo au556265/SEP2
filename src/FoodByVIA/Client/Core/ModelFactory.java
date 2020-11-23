@@ -6,19 +6,19 @@ import FoodByVIA.Client.Model.AddMenu.AddMenuModelImpl;
 public class ModelFactory
 {
   private final ClientFactory cf;
-  private AddMenuModel clientModel;
+  private AddMenuModel addMenuModel;
 
   public ModelFactory(ClientFactory cf)
   {
     this.cf = cf;
   }
 
-  public AddMenuModel getClientModel()
+  public AddMenuModel getAddMenuModel()
   {
-    if(clientModel == null)
+    if(addMenuModel == null)
     {
-      clientModel = new AddMenuModelImpl(cf. getAddMenuClient());
+      addMenuModel = new AddMenuModelImpl(cf. getAddMenuClient());
     }
-    return clientModel;
+    return addMenuModel;
   }
 }

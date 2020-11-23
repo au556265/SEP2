@@ -14,7 +14,7 @@ public class ViewModelFactory
 
   public AddMenuViewModel getAddMenuViewModel() {
     if(addMenuViewModel == null) {
-      addMenuViewModel = new AddMenuViewModel(mf.getClientModel());
+      addMenuViewModel = new AddMenuViewModel(mf.getAddMenuModel());
     }
     return addMenuViewModel;
   }
