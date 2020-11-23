@@ -1,9 +1,10 @@
 package FoodByVIA.Server;
 
+import FoodByVIA.DAO.Persistance.FoodItemDAO;
+import FoodByVIA.DAO.Persistance.FoodItemDaoManager;
 import FoodByVIA.Server.Model.AddMenu.AddMenuServerModelImpl;
 import FoodByVIA.Server.Network.AddMenuServerImpl;
 
-import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 
 public class RunServer
@@ -11,7 +12,8 @@ public class RunServer
   public static void main(String[] args)
       throws RemoteException
   {
-    AddMenuServerImpl addMenuServer = new AddMenuServerImpl(new AddMenuServerModelImpl());
+    FoodItemDAO foodItemDAO = new FoodItemDaoManager();
+    AddMenuServerImpl addMenuServer = new AddMenuServerImpl(new AddMenuServerModelImpl(foodItemDAO));
     addMenuServer.start();
   }
 }
