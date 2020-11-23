@@ -1,6 +1,7 @@
 package FoodByVIA.DAO.Persistance;
 
-import FoodByVIA.Shared.FoodItem;
+import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
+import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDaoManager;
 
 public class test2
 {

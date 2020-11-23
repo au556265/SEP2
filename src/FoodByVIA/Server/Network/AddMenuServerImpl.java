@@ -2,8 +2,8 @@ package FoodByVIA.Server.Network;
 
 import FoodByVIA.Server.Model.AddMenu.AddMenuServerModel;
 import FoodByVIA.Shared.FoodItem;
-import FoodByVIA.Shared.Networking.AddMenuCallBack;
-import FoodByVIA.Shared.Networking.AddMenuServer;
+import FoodByVIA.Shared.Network.AddMenuCallBack;
+import FoodByVIA.Shared.Network.AddMenuServer;
 
 import java.beans.PropertyChangeListener;
 import java.rmi.AlreadyBoundException;

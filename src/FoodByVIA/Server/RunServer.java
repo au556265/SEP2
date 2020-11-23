@@ -1,7 +1,7 @@
 package FoodByVIA.Server;
 
-import FoodByVIA.DAO.Persistance.FoodItemDAO;
-import FoodByVIA.DAO.Persistance.FoodItemDaoManager;
+import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
+import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDaoManager;
 import FoodByVIA.Server.Model.AddMenu.AddMenuServerModelImpl;
 import FoodByVIA.Server.Network.AddMenuServerImpl;
 

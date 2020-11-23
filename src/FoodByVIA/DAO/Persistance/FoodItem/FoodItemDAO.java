@@ -1,4 +1,4 @@
-package FoodByVIA.DAO.Persistance;
+package FoodByVIA.DAO.Persistance.FoodItem;
 
 import FoodByVIA.Shared.FoodItem;
 

@@ -1,7 +1,7 @@
 package FoodByVIA.Server.Core;
 
 import FoodByVIA.Server.Network.AddMenuServerImpl;
-import FoodByVIA.Shared.Networking.AddMenuServer;
+import FoodByVIA.Shared.Network.AddMenuServer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
