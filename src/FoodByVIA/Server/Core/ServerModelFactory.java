@@ -13,7 +13,7 @@ public class ServerModelFactory
   {
     if(addMenuServerModel == null)
     {
-      addMenuServerModel = new AddMenuServerModelImpl();
+      //addMenuServerModel = new AddMenuServerModelImpl();
     }
     return addMenuServerModel;
   }
