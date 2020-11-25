@@ -1,8 +1,7 @@
 package FoodByVIA.Server.Model.AddMenu;
 
-import FoodByVIA.DAO.Persistance.FoodItemDAO;
+import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
 import FoodByVIA.Shared.FoodItem;
-import FoodByVIA.Shared.Menu;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

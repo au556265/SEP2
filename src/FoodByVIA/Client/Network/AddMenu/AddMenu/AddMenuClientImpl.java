@@ -1,11 +1,8 @@
 package FoodByVIA.Client.Network.AddMenu.AddMenu;
 
-import FoodByVIA.Server.Model.AddMenu.AddMenuServerModel;
-import FoodByVIA.Server.Network.AddMenuServerImpl;
 import FoodByVIA.Shared.FoodItem;
-import FoodByVIA.Shared.Menu;
-import FoodByVIA.Shared.Networking.AddMenuCallBack;
-import FoodByVIA.Shared.Networking.AddMenuServer;
+import FoodByVIA.Shared.Network.AddMenuCallBack;
+import FoodByVIA.Shared.Network.AddMenuServer;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
