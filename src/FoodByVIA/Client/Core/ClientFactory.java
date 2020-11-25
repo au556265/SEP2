@@ -1,7 +1,7 @@
 package FoodByVIA.Client.Core;
 
-import FoodByVIA.Client.Network.AddMenu.AddMenu.AddMenuClient;
-import FoodByVIA.Client.Network.AddMenu.AddMenu.AddMenuClientImpl;
+import FoodByVIA.Client.Network.AddMenu.AddMenuClient;
+import FoodByVIA.Client.Network.AddMenu.AddMenuClientImpl;
 import FoodByVIA.Client.Network.RegisterUser.RegisterUserClient;
 import FoodByVIA.Client.Network.RegisterUser.RegisterUserClientImpl;
 
@@ -14,7 +14,7 @@ public class ClientFactory
   {
     if(addMenuclient == null)
     {
-      addMenuclient = new AddMenuClientImpl();
+      //addMenuclient = new AddMenuClientImpl();
     }
     return addMenuclient;
   }
