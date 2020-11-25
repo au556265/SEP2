@@ -1,13 +1,11 @@
 package FoodByVIA.DAO.Persistance.FoodItem;
 
-import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
 import FoodByVIA.Shared.FoodItem;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class FoodItemDaoManager extends FoodByVIA.DAO.Persistance.Connection
-    implements FoodItemDAO
+public class FoodItemDaoManager extends FoodByVIA.DAO.Persistance.Connection implements FoodItemDAO
 {
   public java.sql.Connection getConnection() throws SQLException
   {

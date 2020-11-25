@@ -1,6 +1,6 @@
 package FoodByVIA.Client.Model.AddMenu;
 
-import FoodByVIA.Client.Network.AddMenu.AddMenu.AddMenuClient;
+import FoodByVIA.Client.Network.AddMenu.AddMenuClient;
 import FoodByVIA.Shared.FoodItem;
 
 public class AddMenuModelImpl implements AddMenuModel
@@ -9,7 +9,7 @@ public class AddMenuModelImpl implements AddMenuModel
 
   public AddMenuModelImpl(AddMenuClient client) {
     this.client=client;
-    client.startClient();
+    //client.startClient();
   }
 
 
@@ -17,6 +17,6 @@ public class AddMenuModelImpl implements AddMenuModel
       String description)
   {
     FoodItem item = new FoodItem(name, price, description);
-   client.addFoodItem(item);
+   //client.addFoodItem(item);
   }
 }

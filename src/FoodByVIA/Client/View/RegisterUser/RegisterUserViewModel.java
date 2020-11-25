@@ -50,9 +50,9 @@ public class RegisterUserViewModel
       message.setValue("Password not matched");
     }
     else
-    {
-      User user = new User(name.getValue(), address.getValue(), phoneNumber.getValue(),
-          emailAddress.getValue(), username.getValue(), password.getValue(), userType.get(0));
+    { //TODO Fix User class here, Email and Address OR EmailAddress
+      User user = new User(username.getValue(),password.getValue(),name.getValue(),userType.get(0),phoneNumber.getValue(),address.getValue(),emailAddress.getValue());
+
       registerUserModel.addUser(user);
       message.setValue("Account created");
 
