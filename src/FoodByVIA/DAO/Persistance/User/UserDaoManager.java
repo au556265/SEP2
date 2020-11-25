@@ -1,13 +1,15 @@
 package FoodByVIA.DAO.Persistance.User;
 
+import FoodByVIA.DAO.Persistance.Connection;
+import FoodByVIA.Shared.FoodItem;
 import FoodByVIA.Shared.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 
-public class UserDaoManager extends FoodByVIA.DAO.Persistance.Connection implements UserDAO
+public class UserDAOManager extends Connection implements UserDAO
 {
   public java.sql.Connection getConnection() throws SQLException
   {
@@ -57,5 +59,36 @@ public class UserDaoManager extends FoodByVIA.DAO.Persistance.Connection impleme
       throwables.printStackTrace();
     }
     return user;
+  }
+
+  @Override public ArrayList<User> getAllUsers()
+  {
+    ArrayList<User> users = new ArrayList<>();
+
+    try(java.sql.Connection connection = getConnection())
+    {
+      PreparedStatement preparedStatement =
+          connection.prepareStatement("select * from user");
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while(resultSet.next()){
+        String name = resultSet.getString("name");
+        String address = resultSet.getString("price");
+        String phoneNumber  = resultSet.getString("phonenumber");
+        String emailAddress = resultSet.getString("emailaddress");
+        String username = resultSet.getString("username");
+        String password = resultSet.getString("password");
+        String userType = resultSet.getString("usertype");
+        User user = new User(name, address, phoneNumber, emailAddress, username, password, userType);
+
+        users.add(user);
+      }
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
+    return users;
   }
 }

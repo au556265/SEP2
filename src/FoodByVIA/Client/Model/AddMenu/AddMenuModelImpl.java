@@ -1,6 +1,6 @@
 package FoodByVIA.Client.Model.AddMenu;
 
-import FoodByVIA.Client.Network.AddMenu.AddMenu.AddMenuClient;
+import FoodByVIA.Client.Network.AddMenu.AddMenuClient;
 import FoodByVIA.Shared.FoodItem;
 
 public class AddMenuModelImpl implements AddMenuModel

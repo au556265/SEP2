@@ -14,7 +14,7 @@ public class ClientFactory
   {
     if(addMenuclient == null)
     {
-      //addMenuclient = new AddMenuClientImpl();
+      addMenuclient = new AddMenuClientImpl();
     }
     return addMenuclient;
   }
