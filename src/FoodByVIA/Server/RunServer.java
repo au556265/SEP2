@@ -1,19 +1,25 @@
 package FoodByVIA.Server;
 
-import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
-import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDaoManager;
-import FoodByVIA.Server.Model.AddMenu.AddMenuServerModelImpl;
-import FoodByVIA.Server.Network.AddMenuServerImpl;
+import FoodByVIA.Server.Core.DAOFactory;
+import FoodByVIA.Server.Core.ServerFactory;
+import FoodByVIA.Server.Core.ServerModelFactory;
 
+import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 public class RunServer
 {
   public static void main(String[] args)
-      throws RemoteException
+      throws RemoteException, AlreadyBoundException
   {
-    FoodItemDAO foodItemDAO = new FoodItemDaoManager();
-    AddMenuServerImpl addMenuServer = new AddMenuServerImpl(new AddMenuServerModelImpl(foodItemDAO));
-    addMenuServer.start();
+    DAOFactory daoFactory = new DAOFactory();
+    ServerModelFactory serverModelFactory = new ServerModelFactory(daoFactory);
+    ServerFactory serverFactory = new ServerFactory(serverModelFactory);
+
+    Registry registry = LocateRegistry.createRegistry(1099);
+    registry.bind("Server", serverFactory);
+    System.out.println("Server Started");
   }
 }
