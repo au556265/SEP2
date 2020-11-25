@@ -3,6 +3,7 @@ package FoodByVIA.Client.View.RegisterUser;
 import FoodByVIA.Client.Core.ViewHandler;
 import FoodByVIA.Client.Core.ViewModelFactory;
 import FoodByVIA.Client.View.ViewController;
+import FoodByVIA.Shared.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -26,7 +27,9 @@ public class RegisterUserController implements ViewController
 
   @FXML private void createAccountButton(ActionEvent actionEvent)
   {
-    registerUserViewModel.createAccount();
+    User user = new User(nameField.getText(), addressField.getText(), phoneNoField.getText(), emailAddressField.getText(),
+        usernameField.getText(), passwordField.getText(), userType.getSelectionModel().getSelectedItem());
+    registerUserViewModel.createAccount(user);
   }
 
   @FXML private void cancelButton(ActionEvent actionEvent)

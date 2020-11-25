@@ -1,33 +1,31 @@
 package FoodByVIA.Client.Network.AddMenu.AddMenu;
 
+import FoodByVIA.Client.Network.NetworkConnection;
 import FoodByVIA.Shared.FoodItem;
-import FoodByVIA.Shared.Network.AddMenuCallBack;
-import FoodByVIA.Shared.Network.AddMenuServer;
+import FoodByVIA.Shared.Network.AddMenu.AddMenuServer;
 
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
-public class AddMenuClientImpl implements AddMenuClient, AddMenuCallBack
+public class AddMenuClientImpl implements AddMenuClient
 {
   private AddMenuServer addMenuServer;
+  private NetworkConnection networkConnection;
+
+  public AddMenuClientImpl()
+  {
+    networkConnection = NetworkConnection.getInstance();
+  }
 
   @Override public void startClient()
   {
-   try
-   {
-     UnicastRemoteObject.exportObject(this, 0);
-     Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-     addMenuServer = (AddMenuServer) registry.lookup("AddMenuServer");
-    // addMenuServer.registerClient(this);
-     System.out.println("Server Connected");
-   }
-   catch (RemoteException | NotBoundException e)
-   {
-     e.printStackTrace();
-   }
+    try
+    {
+      addMenuServer = networkConnection.getServerInterface().getAddMenuServerImpl();
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void addFoodItem(FoodItem item)
@@ -40,10 +38,5 @@ public class AddMenuClientImpl implements AddMenuClient, AddMenuCallBack
     {
       e.printStackTrace();
     }
-  }
-
-  @Override public void update(FoodItem item)
-  {
-
   }
 }

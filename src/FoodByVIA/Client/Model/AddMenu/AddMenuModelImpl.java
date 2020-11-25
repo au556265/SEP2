@@ -17,6 +17,6 @@ public class AddMenuModelImpl implements AddMenuModel
       String description)
   {
     FoodItem item = new FoodItem(name, price, description);
-   client.addFoodItem(item);
+    client.addFoodItem(item);
   }
 }

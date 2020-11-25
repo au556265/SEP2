@@ -28,7 +28,6 @@ public class AddMenuViewController implements ViewController
   public void addMenuButton(ActionEvent actionEvent)
   {
     addMenuViewModel.addMenu();
-
   }
 
   @FXML

@@ -22,5 +22,6 @@ public class RegisterUserServerImpl implements RegisterUserServer
   @Override public void addUser(User user)
   {
     registerUserServerModel.addUser(user);
+    System.out.println(user);
   }
 }

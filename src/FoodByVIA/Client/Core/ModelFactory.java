@@ -20,7 +20,7 @@ public class ModelFactory
   {
     if(addMenuModel == null)
     {
-      addMenuModel = new AddMenuModelImpl(cf. getAddMenuClient());
+      addMenuModel = new AddMenuModelImpl(cf.getAddMenuClient());
     }
     return addMenuModel;
   }

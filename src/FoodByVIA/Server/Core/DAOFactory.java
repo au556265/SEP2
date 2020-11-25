@@ -1,9 +1,9 @@
 package FoodByVIA.Server.Core;
 
-import FoodByVIA.Persistance.FoodItem.FoodItemDAO;
-import FoodByVIA.Persistance.FoodItem.FoodItemDaoManager;
-import FoodByVIA.Persistance.User.UserDAO;
-import FoodByVIA.Persistance.User.UserDAOManager;
+import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
+import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDaoManager;
+import FoodByVIA.DAO.Persistance.User.UserDAO;
+import FoodByVIA.DAO.Persistance.User.UserDAOManager;
 
 public class DAOFactory
 {

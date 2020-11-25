@@ -1,6 +1,6 @@
 package FoodByVIA.Server.Model.RegisterUser;
 
-import FoodByVIA.Persistance.User.UserDAO;
+import FoodByVIA.DAO.Persistance.User.UserDAO;
 import FoodByVIA.Shared.User;
 
 import java.beans.PropertyChangeListener;
@@ -25,7 +25,8 @@ public class RegisterUserServerModelImpl implements RegisterUserServerModel
   {
     if(!(checkAvailableUser(user)))
     {
-      userDAO.addUser(user);
+      //userDAO.addUser(user);
+      userDAO.createUser(user);
       users.add(user);
       System.out.println(user + " Added");
       support.firePropertyChange("NewUser", null, user);

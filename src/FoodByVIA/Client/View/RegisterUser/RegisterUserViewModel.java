@@ -38,7 +38,7 @@ public class RegisterUserViewModel
     confirmPassword = new SimpleStringProperty();
   }
 
-  public void createAccount()
+  public void createAccount(User user)
   {
     if(name.getValue().equals("") || address.getValue().equals("") || phoneNumber.getValue().equals("") ||
         username.getValue().equals("") || password.getValue().equals("") || confirmPassword.getValue().equals(""))
@@ -51,8 +51,6 @@ public class RegisterUserViewModel
     }
     else
     {
-      User user = new User(name.getValue(), address.getValue(), phoneNumber.getValue(),
-          emailAddress.getValue(), username.getValue(), password.getValue(), userType.get(0));
       registerUserModel.addUser(user);
       message.setValue("Account created");
 

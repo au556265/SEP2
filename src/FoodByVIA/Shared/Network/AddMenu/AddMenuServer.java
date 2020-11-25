@@ -1,4 +1,4 @@
-package FoodByVIA.Shared.Network;
+package FoodByVIA.Shared.Network.AddMenu;
 
 import FoodByVIA.Shared.FoodItem;
 
@@ -9,5 +9,4 @@ public interface AddMenuServer extends Remote
 {
    void addFoodItem(FoodItem item) throws
        RemoteException;
-   void registerClient(AddMenuCallBack client) throws RemoteException;
 }
