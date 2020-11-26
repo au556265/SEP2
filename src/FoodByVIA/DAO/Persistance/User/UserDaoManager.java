@@ -68,7 +68,7 @@ public class UserDAOManager extends Connection implements UserDAO
     try(java.sql.Connection connection = getConnection())
     {
       PreparedStatement preparedStatement =
-          connection.prepareStatement("select * from user");
+          connection.prepareStatement("select * from users");
       ResultSet resultSet = preparedStatement.executeQuery();
 
       while(resultSet.next()){
