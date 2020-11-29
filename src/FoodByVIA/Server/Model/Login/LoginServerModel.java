@@ -1,6 +1,10 @@
 package FoodByVIA.Server.Model.Login;
 
-public interface LoginServerModel
+import FoodByVIA.Shared.Util.PropertyChangeSubject;
+
+import java.beans.PropertyChangeListener;
+
+public interface LoginServerModel extends PropertyChangeSubject
 {
   boolean checkUserInput(String username, String password, String usertype);
 }

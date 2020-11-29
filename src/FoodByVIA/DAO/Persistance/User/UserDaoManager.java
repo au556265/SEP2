@@ -16,7 +16,7 @@ public class UserDAOManager extends Connection implements UserDAO
     return super.getConnection();
   }
 
-  @Override public boolean checkLogin(String username, String password)
+  @Override public boolean checkLogin(String username, String password, String usertype)
   {
     try(java.sql.Connection connection = getConnection())
     {

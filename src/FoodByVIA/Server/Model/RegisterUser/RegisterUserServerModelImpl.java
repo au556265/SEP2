@@ -38,7 +38,8 @@ public class RegisterUserServerModelImpl implements RegisterUserServerModel
 
   private boolean checkAvailableUser(User user)
   {
-    return userDAO.checkLogin(user.getUsername(), user.getPassword());
+    return userDAO.checkLogin(user.getUsername(), user.getPassword(),
+        user.getUserType());
   }
 
   @Override public void addPropertyChangeListener(String name,

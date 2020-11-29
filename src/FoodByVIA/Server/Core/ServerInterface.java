@@ -1,6 +1,7 @@
 package FoodByVIA.Server.Core;
 
 import FoodByVIA.Shared.Network.AddMenu.AddMenuServer;
+import FoodByVIA.Shared.Network.Login.LoginServer;
 import FoodByVIA.Shared.Network.RegisterUser.RegisterUserServer;
 
 import java.rmi.Remote;
@@ -10,4 +11,5 @@ public interface ServerInterface extends Remote
 {
   AddMenuServer getAddMenuServerImpl() throws RemoteException;
   RegisterUserServer getRegisterUserServerImpl() throws RemoteException;
+  LoginServer getLoginServerImpl() throws RemoteException;
 }
