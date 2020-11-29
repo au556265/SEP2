@@ -25,7 +25,6 @@ public class RegisterUserServerModelImpl implements RegisterUserServerModel
   {
     if(!(checkAvailableUser(user)))
     {
-      //userDAO.addUser(user);
       userDAO.createUser(user);
       users.add(user);
       System.out.println(user + " Added");
@@ -39,14 +38,6 @@ public class RegisterUserServerModelImpl implements RegisterUserServerModel
 
   private boolean checkAvailableUser(User user)
   {
-    /*for(User u : users)
-    {
-      if(u.getUsername().equals(user.getUsername()))
-      {
-        bool = true;
-        break;
-      }
-    }*/
     return userDAO.checkLogin(user.getUsername(), user.getPassword());
   }
 
