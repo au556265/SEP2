@@ -1,7 +1,6 @@
 package FoodByVIA.DAO.Persistance.User;
 
 import FoodByVIA.DAO.Persistance.Connection;
-import FoodByVIA.Shared.FoodItem;
 import FoodByVIA.Shared.User;
 
 import java.sql.PreparedStatement;
@@ -9,21 +8,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserDAOManager extends Connection implements UserDAO
+public class UserDaoManager extends Connection implements UserDAO
 {
   public java.sql.Connection getConnection() throws SQLException
   {
     return super.getConnection();
   }
 
-  @Override public boolean checkLogin(String username, String password)
+  @Override public boolean checkLogin(String username, String password, String userType)
   {
     try(java.sql.Connection connection = getConnection())
     {
-      PreparedStatement preparedStatement = connection.prepareStatement("select exists (select * from Users where username = ? and password = ?)");
+      PreparedStatement preparedStatement = connection.prepareStatement("select exists (select * from Users where username = ? and password = ? and userType = ?)");
 
       preparedStatement.setString(1,username); // Setting the ? marks
       preparedStatement.setString(2, password);
+      preparedStatement.setString(3, userType);
 
       ResultSet resultSet = preparedStatement.executeQuery();
       if (resultSet.next())
@@ -60,6 +60,7 @@ public class UserDAOManager extends Connection implements UserDAO
     }
     return user;
   }
+  
 
   @Override public ArrayList<User> getAllUsers()
   {
@@ -68,17 +69,17 @@ public class UserDAOManager extends Connection implements UserDAO
     try(java.sql.Connection connection = getConnection())
     {
       PreparedStatement preparedStatement =
-          connection.prepareStatement("select * from user");
+          connection.prepareStatement("select * from users");
       ResultSet resultSet = preparedStatement.executeQuery();
 
       while(resultSet.next()){
         String name = resultSet.getString("name");
-        String address = resultSet.getString("price");
-        String phoneNumber  = resultSet.getString("phonenumber");
-        String emailAddress = resultSet.getString("emailaddress");
+        String address = resultSet.getString("address");
+        String phoneNumber  = resultSet.getString("phoneNumber");
+        String emailAddress = resultSet.getString("email");
         String username = resultSet.getString("username");
         String password = resultSet.getString("password");
-        String userType = resultSet.getString("usertype");
+        String userType = resultSet.getString("userType");
         User user = new User(name, address, phoneNumber, emailAddress, username, password, userType);
 
         users.add(user);

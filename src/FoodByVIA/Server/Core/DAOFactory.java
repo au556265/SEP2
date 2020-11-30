@@ -3,7 +3,7 @@ package FoodByVIA.Server.Core;
 import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
 import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDaoManager;
 import FoodByVIA.DAO.Persistance.User.UserDAO;
-import FoodByVIA.DAO.Persistance.User.UserDAOManager;
+import FoodByVIA.DAO.Persistance.User.UserDaoManager;
 
 public class DAOFactory
 {
@@ -23,7 +23,7 @@ public class DAOFactory
   {
     if(userDAO == null)
     {
-      userDAO = new UserDAOManager();
+      userDAO = new UserDaoManager();
     }
     return userDAO;
   }

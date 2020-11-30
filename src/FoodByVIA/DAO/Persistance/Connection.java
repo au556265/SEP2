@@ -20,7 +20,7 @@ public abstract class Connection
   public java.sql.Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(
-        "jdbc:postgresql://localhost:2580/postgres?currentSchema=sep",
-        "postgres", "2580");
+        "jdbc:postgresql://localhost:5432/postgres?currentSchema=sep",
+        "postgres", "bakaVeki95");
   }
 }
