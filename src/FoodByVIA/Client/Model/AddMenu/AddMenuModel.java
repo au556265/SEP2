@@ -1,6 +1,8 @@
 package FoodByVIA.Client.Model.AddMenu;
 
-public interface AddMenuModel
+import FoodByVIA.Shared.Util.PropertyChangeSubject;
+
+public interface AddMenuModel extends PropertyChangeSubject
 {
   void addFoodItem(String name, double price, String description);
 }

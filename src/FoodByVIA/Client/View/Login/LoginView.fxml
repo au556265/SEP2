@@ -24,7 +24,10 @@
          </font></Label>
       <ComboBox fx:id="usertypeID" layoutX="452.0" layoutY="292.0" opacity="0.39" prefHeight="26.0" prefWidth="230.0" promptText="Select User" />
       <Button layoutX="507.0" layoutY="447.0" mnemonicParsing="false" onAction="#loginButton" text="Login" />
-      <Label fx:id="messageLabel" layoutX="205.0" layoutY="378.0" prefHeight="36.0" prefWidth="626.0" textFill="RED" />
+      <Label fx:id="messageLabel" layoutX="205.0" layoutY="378.0" prefHeight="36.0" prefWidth="626.0" textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
       <Pane prefHeight="669.0" prefWidth="194.0" style="-fx-background-color: #333333;">
          <children>
             <Separator layoutX="-3.0" layoutY="59.0" prefWidth="200.0" />

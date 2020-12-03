@@ -12,7 +12,9 @@ public class NetworkConnection
   private ServerInterface serverInterface;
   private static NetworkConnection instance;
 
-  private NetworkConnection(){}
+  private NetworkConnection(){
+
+  }
 
   public static NetworkConnection getInstance()
   {

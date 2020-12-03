@@ -57,4 +57,9 @@ public class RegisterUserController implements ViewController
     confirmPasswordField.textProperty().bindBidirectional(registerUserViewModel.getConfirmPassword());
     userType.getItems().addAll(registerUserViewModel.getUserType());
   }
+
+  @FXML private void onLogin(ActionEvent actionEvent)
+  {
+    vh.openToLoginView();
+  }
 }

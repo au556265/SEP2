@@ -1,9 +1,11 @@
 package FoodByVIA.Client.View.Login;
 
 import FoodByVIA.Client.Model.Login.LoginModel;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,14 @@ public class LoginViewModel
     userType.add("Administrator");
     userType.add("Employee");
     userType.add("Customer");
+
+    loginModel.addPropertyChangeListener("LoginMessage", this::addMessage);
+  }
+
+  private void addMessage(PropertyChangeEvent evt)
+  {
+    String messageFromServer = (String) evt.getNewValue();
+    Platform.runLater(() -> message.setValue(messageFromServer));
   }
 
   public StringProperty getUsername()

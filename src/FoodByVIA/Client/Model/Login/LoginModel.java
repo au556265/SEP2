@@ -1,6 +1,8 @@
 package FoodByVIA.Client.Model.Login;
 
-public interface LoginModel
+import FoodByVIA.Shared.Util.PropertyChangeSubject;
+
+public interface LoginModel extends PropertyChangeSubject
 {
   boolean checkUserInput(String username, String password, String usertype);
 }

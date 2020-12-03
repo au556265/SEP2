@@ -2,9 +2,11 @@ package FoodByVIA.Client.View.RegisterUser;
 
 import FoodByVIA.Client.Model.RegisterUser.RegisterUserModel;
 import FoodByVIA.Shared.User;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,13 @@ public class RegisterUserViewModel
     userType.add("Employee");
     userType.add("Customer");
     confirmPassword = new SimpleStringProperty();
+    registerUserModel.addPropertyChangeListener("RegisterMessage", this::addMessage);
+  }
+
+  private void addMessage(PropertyChangeEvent evt)
+  {
+    String messageFromServer = (String) evt.getNewValue();
+    Platform.runLater(() -> message.setValue(messageFromServer));
   }
 
   public void createAccount(User user)
@@ -52,9 +61,6 @@ public class RegisterUserViewModel
     else
     {
       registerUserModel.addUser(user);
-      message.setValue("Account created");
-
-      clear();
     }
   }
 

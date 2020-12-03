@@ -1,7 +1,10 @@
 package FoodByVIA.Client.View.addMenu;
 
 import FoodByVIA.Client.Model.AddMenu.AddMenuModel;
+import javafx.application.Platform;
 import javafx.beans.property.*;
+
+import java.beans.PropertyChangeEvent;
 
 public class AddMenuViewModel
 {
@@ -17,8 +20,14 @@ public class AddMenuViewModel
     price = new SimpleDoubleProperty();
     message = new SimpleStringProperty();
     this.model=model;
+    model.addPropertyChangeListener("AddMenuMessage", this::throwMessage);
   }
 
+  private void throwMessage(PropertyChangeEvent evt)
+  {
+    String messageFromServer = (String) evt.getNewValue();
+    Platform.runLater(() -> message.setValue(messageFromServer));
+  }
 
   public StringProperty getName()
   {
@@ -40,13 +49,11 @@ public class AddMenuViewModel
     if ((inputName != null && !"".equals(inputName)) && inputPrice != 0)
     {
       model.addFoodItem(inputName, inputPrice, inputDescription);
-      message.setValue("Item Added");
     }
     else
     {
       message.setValue("Name or Price fields cannot be empty");
     }
-    clear();
   }
 
   public void clear(){

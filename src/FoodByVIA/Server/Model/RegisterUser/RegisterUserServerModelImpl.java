@@ -11,13 +11,11 @@ import java.util.List;
 public class RegisterUserServerModelImpl implements RegisterUserServerModel
 {
   private UserDAO userDAO;
-  private List<User> users;
   private PropertyChangeSupport support;
 
   public RegisterUserServerModelImpl(UserDAO userDAO)
   {
     this.userDAO = userDAO;
-    users = new ArrayList<>();
     support = new PropertyChangeSupport(this);
   }
 
@@ -26,20 +24,29 @@ public class RegisterUserServerModelImpl implements RegisterUserServerModel
     if(!(checkAvailableUser(user)))
     {
       userDAO.createUser(user);
-      users.add(user);
       System.out.println(user + " Added");
-      support.firePropertyChange("NewUser", null, user);
+      support.firePropertyChange("RegisterMessage", null, "Account created");
     }
     else
     {
       System.out.println("Account not created");
+      support.firePropertyChange("RegisterMessage", null, "Use a different Username");
     }
   }
 
   private boolean checkAvailableUser(User user)
   {
-    return userDAO.checkLogin(user.getUsername(), user.getPassword(),
-        user.getUserType());
+    ArrayList<User> users = userDAO.getAllUsers();
+    boolean bool = false;
+    for (User existing : users)
+    {
+      if(existing.getUsername().equalsIgnoreCase(user.getUsername()))
+      {
+        bool = true;
+        break;
+      }
+    }
+    return bool;
   }
 
   @Override public void addPropertyChangeListener(String name,

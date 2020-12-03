@@ -11,16 +11,8 @@ import java.rmi.RemoteException;
 
 public class DummyTest
 {
-  public static void main(String[] args) throws RemoteException
+  public static void main(String[] args)
   {
-    UserDAO userDAO = new UserDaoManager();
-    LoginServerModel loginServerModel = new LoginServerModelImpl(userDAO);
-    LoginServer loginServer = new LoginServerImpl(loginServerModel);
-
-    boolean santosh = loginServer.checkUserInput("sante", "123456", "Employee");
-    boolean priyanka = loginServer.checkUserInput("Priyanka", "123456", "Employee");
-
-    System.out.println(santosh + "    " + priyanka);
   }
 
 }

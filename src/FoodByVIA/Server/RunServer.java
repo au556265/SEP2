@@ -1,11 +1,9 @@
 package FoodByVIA.Server;
 
+import FoodByVIA.Server.Core.ClientCallBackFactory;
 import FoodByVIA.Server.Core.DAOFactory;
 import FoodByVIA.Server.Core.ServerFactory;
 import FoodByVIA.Server.Core.ServerModelFactory;
-import FoodByVIA.Server.Model.Login.LoginServerModel;
-import FoodByVIA.Server.Model.Login.LoginServerModelImpl;
-import FoodByVIA.Shared.Network.Login.LoginServer;
 
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
@@ -19,7 +17,8 @@ public class RunServer
   {
     DAOFactory daoFactory = new DAOFactory();
     ServerModelFactory serverModelFactory = new ServerModelFactory(daoFactory);
-    ServerFactory serverFactory = new ServerFactory(serverModelFactory);
+    ClientCallBackFactory clientCallBackFactory = new ClientCallBackFactory();
+    ServerFactory serverFactory = new ServerFactory(serverModelFactory, clientCallBackFactory);
 
     Registry registry = LocateRegistry.createRegistry(1099);
     registry.bind("Server", serverFactory);

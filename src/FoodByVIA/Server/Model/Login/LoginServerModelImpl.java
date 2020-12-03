@@ -21,7 +21,7 @@ public class LoginServerModelImpl implements LoginServerModel
   {
     if(!(userDAO.checkLogin(username, password, usertype)))
     {
-      support.firePropertyChange("UserNotFound", null, "Incorrect username or password");
+      support.firePropertyChange("LoginMessage", null, "Incorrect username or password or usertype");
     }
     return userDAO.checkLogin(username, password, usertype);
   }

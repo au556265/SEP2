@@ -16,11 +16,13 @@ public class ServerFactory implements ServerInterface
   private RegisterUserServer registerUserServer;
   private LoginServer loginServer;
   private ServerModelFactory modelFactory;
+  private ClientCallBackFactory callBackFactory;
 
-  public ServerFactory(ServerModelFactory modelFactory) throws RemoteException
+  public ServerFactory(ServerModelFactory modelFactory, ClientCallBackFactory callBackFactory) throws RemoteException
   {
     UnicastRemoteObject.exportObject(this, 0);
     this.modelFactory = modelFactory;
+    this.callBackFactory = callBackFactory;
   }
 
   @Override public AddMenuServer getAddMenuServerImpl()
@@ -29,7 +31,7 @@ public class ServerFactory implements ServerInterface
     {
       try
       {
-        addMenuServer= new AddMenuServerImpl(modelFactory.getAddMenuServerModel());
+        addMenuServer= new AddMenuServerImpl(modelFactory.getAddMenuServerModel(), callBackFactory.getMessageCallBack());
       }
       catch (RemoteException e)
       {
@@ -45,7 +47,7 @@ public class ServerFactory implements ServerInterface
     {
       try
       {
-        registerUserServer = new RegisterUserServerImpl(modelFactory.getRegisterUserServerModel());
+        registerUserServer = new RegisterUserServerImpl(modelFactory.getRegisterUserServerModel(), callBackFactory.getMessageCallBack());
       }
       catch (RemoteException e)
       {
@@ -55,13 +57,13 @@ public class ServerFactory implements ServerInterface
     return registerUserServer;
   }
 
-  @Override public LoginServer getLoginServerImpl() throws RemoteException
+  @Override public LoginServer getLoginServerImpl()
   {
     if(loginServer == null)
     {
       try
       {
-        loginServer = new LoginServerImpl(modelFactory.getLoginServerModel());
+        loginServer = new LoginServerImpl(modelFactory.getLoginServerModel(), callBackFactory.getMessageCallBack());
       }
       catch(RemoteException e)
       {

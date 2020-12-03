@@ -11,13 +11,11 @@ import java.util.List;
 public class AddMenuServerModelImpl implements AddMenuServerModel
 {
   private FoodItemDAO foodItemDAO;
-  private List<FoodItem> items;
   private PropertyChangeSupport support;
 
   public AddMenuServerModelImpl(FoodItemDAO foodItemDAO)
   {
     this.foodItemDAO = foodItemDAO ;
-    items = new ArrayList<>();
     support = new PropertyChangeSupport(this);
   }
 
@@ -26,19 +24,35 @@ public class AddMenuServerModelImpl implements AddMenuServerModel
     if(!(checkFoodItem(item)))
     {
       foodItemDAO.addMenu(item);
-      items.add(item);
-      support.firePropertyChange("NewFoodItem", null, item);
       System.out.println(item.getName() + " Added");
+      support.firePropertyChange("AddMenuMessage", null, "Item Added");
     }
     else
     {
       System.out.println("Item name matched");
+      support.firePropertyChange("AddMenuMessage", null, "Use different item name");
     }
   }
+
+  /*@Override public String addFoodItem(FoodItem item)
+  {
+    if(!(checkFoodItem(item)))
+    {
+      foodItemDAO.addMenu(item);
+      System.out.println(item.getName() + " Added");
+      return "Item added";
+    }
+    else
+    {
+      System.out.println("Item name matched");
+      return "Item name matched";
+    }
+  }*/
 
   private boolean checkFoodItem(FoodItem item)
   {
     boolean bool = false;
+    ArrayList<FoodItem> items = foodItemDAO.getAllFoodItems();
     for(FoodItem foodItem : items)
     {
       if(foodItem.getName().equals(item.getName()))
