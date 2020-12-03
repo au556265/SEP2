@@ -86,12 +86,12 @@ public class UserDaoManager extends Connection implements UserDAO
 
         users.add(user);
       }
+      return users;
     }
     catch (SQLException e)
     {
       e.printStackTrace();
     }
-
-    return users;
+    return null;
   }
 }

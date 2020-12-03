@@ -12,6 +12,7 @@ public class ViewHandler
 {
   private Scene addMenuScene;
   private Scene registerUserScene;
+  private Scene loginScene;
   private Stage mainStage;
 
   private ViewModelFactory vmf;
@@ -24,7 +25,7 @@ public class ViewHandler
   public void start()
   {
     mainStage = new Stage();
-    openRegisterUserView();
+    openAddMenuView();
   }
 
   private Parent loadFXML(String path) throws IOException
@@ -75,6 +76,26 @@ public class ViewHandler
       mainStage.setTitle("Register User");
     }
     mainStage.setScene(registerUserScene);
+    mainStage.show();
+  }
+
+  public void openToLoginView()
+  {
+    if(loginScene == null)
+    {
+      try
+      {
+        Parent root = loadFXML("../View/Login/LoginView.fxml");
+
+        loginScene = new Scene(root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+      mainStage.setTitle("Login");
+    }
+    mainStage.setScene(loginScene);
     mainStage.show();
   }
 

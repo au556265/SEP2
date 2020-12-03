@@ -1,6 +1,7 @@
 package FoodByVIA.Client.Network.Login;
 
-public interface LoginCient
+public interface LoginClient
 {
   boolean checkUserInput(String username, String password, String usertype);
+  void startClient();
 }
