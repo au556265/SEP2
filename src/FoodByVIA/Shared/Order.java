@@ -15,7 +15,7 @@ public class Order implements Serializable
   private boolean active;
   private User customer;
   private ArrayList<FoodItem> foodItems = new ArrayList<>();
-  private GregorianCalendar currentDate = new GregorianCalendar();
+  private GregorianCalendar orderDate;
 
   // add date
   public Order(User customer, double totalPrice, boolean active){
@@ -24,20 +24,29 @@ public class Order implements Serializable
     this.active=active;
   }
 
-  /*
+
   public String getDate(){
-    return " " + currentDate.get(GregorianCalendar.DATE) + " " + (currentDate.get(GregorianCalendar.MONTH)+1) +  " "+ currentDate.get(GregorianCalendar.YEAR);
+    return "";
   }
-   */
+
+
+
 
   public void addFoodItem(FoodItem foodItem){
     foodItems.add(foodItem);
   }
 
 
+  public String setDate( int year, int month, int day){
+    return year + "-" + month + "-"+day;
+  }
 
   public User getCustomerInformation(){
     return customer;
+  }
+
+  public String getCustomer(User user){
+    return user.getUsername();
   }
 
   public ArrayList<FoodItem> getFoodItems(){
