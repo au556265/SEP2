@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class UserDaoManager extends Connection implements UserDAO
 {
+  //testing git again
   public java.sql.Connection getConnection() throws SQLException
   {
     return super.getConnection();
