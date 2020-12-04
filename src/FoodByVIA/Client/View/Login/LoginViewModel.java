@@ -1,6 +1,8 @@
 package FoodByVIA.Client.View.Login;
 
 import FoodByVIA.Client.Model.Login.LoginModel;
+import FoodByVIA.Shared.Catalogue;
+import FoodByVIA.Shared.User;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -59,6 +61,12 @@ public class LoginViewModel
 
   public boolean checkUserInput(String username, String password, String usertype)
   {
+    if(loginModel.checkUserInput(username, password, usertype))
+    {
+      Catalogue catalogue = Catalogue.getInstance();
+      User user = new User(username, usertype);
+      catalogue.saveCurrentUser(user);
+    }
     return loginModel.checkUserInput(username, password, usertype);
   }
 

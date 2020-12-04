@@ -2,9 +2,11 @@ package FoodByVIA.Server.Core;
 
 import FoodByVIA.Server.Network.AddMenuServerImpl;
 import FoodByVIA.Server.Network.LoginServerImpl;
+import FoodByVIA.Server.Network.MakeOrderServerImpl;
 import FoodByVIA.Server.Network.RegisterUserServerImpl;
 import FoodByVIA.Shared.Network.AddMenu.AddMenuServer;
 import FoodByVIA.Shared.Network.Login.LoginServer;
+import FoodByVIA.Shared.Network.MakeOrder.MakeOrderServer;
 import FoodByVIA.Shared.Network.RegisterUser.RegisterUserServer;
 
 import java.rmi.RemoteException;
@@ -15,6 +17,7 @@ public class ServerFactory implements ServerInterface
   private AddMenuServer addMenuServer;
   private RegisterUserServer registerUserServer;
   private LoginServer loginServer;
+  private MakeOrderServer makeOrderServer;
   private ServerModelFactory modelFactory;
   private ClientCallBackFactory callBackFactory;
 
@@ -71,6 +74,22 @@ public class ServerFactory implements ServerInterface
       }
     }
     return loginServer;
+  }
+
+  @Override public MakeOrderServer getMakeOrderServerImpl()
+  {
+    if(makeOrderServer == null)
+    {
+      try
+      {
+        makeOrderServer = new MakeOrderServerImpl(modelFactory.getMakeOrderServerModel(), callBackFactory.getMessageCallBack());
+      }
+      catch(RemoteException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    return makeOrderServer;
   }
 
 }

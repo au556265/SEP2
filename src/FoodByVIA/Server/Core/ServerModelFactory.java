@@ -4,6 +4,8 @@ import FoodByVIA.Server.Model.AddMenu.AddMenuServerModel;
 import FoodByVIA.Server.Model.AddMenu.AddMenuServerModelImpl;
 import FoodByVIA.Server.Model.Login.LoginServerModel;
 import FoodByVIA.Server.Model.Login.LoginServerModelImpl;
+import FoodByVIA.Server.Model.MakeOrder.MakeOrderServerModel;
+import FoodByVIA.Server.Model.MakeOrder.MakeOrderServerModelImpl;
 import FoodByVIA.Server.Model.RegisterUser.RegisterUserServerModel;
 import FoodByVIA.Server.Model.RegisterUser.RegisterUserServerModelImpl;
 
@@ -12,6 +14,7 @@ public class ServerModelFactory
   private AddMenuServerModel addMenuServerModel;
   private RegisterUserServerModel registerUserServerModel;
   private LoginServerModel loginServerModel;
+  private MakeOrderServerModel makeOrderServerModel;
 
   private DAOFactory daoFactory;
 
@@ -45,5 +48,14 @@ public class ServerModelFactory
       loginServerModel = new LoginServerModelImpl(daoFactory.getUserDAO());
     }
     return loginServerModel;
+  }
+
+  public MakeOrderServerModel getMakeOrderServerModel()
+  {
+    if(makeOrderServerModel == null)
+    {
+      makeOrderServerModel = new MakeOrderServerModelImpl(daoFactory.getOrderDAO());
+    }
+    return makeOrderServerModel;
   }
 }

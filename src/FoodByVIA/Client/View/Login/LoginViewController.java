@@ -23,7 +23,7 @@ public class LoginViewController implements ViewController
 
 
   @FXML private void loginButton(ActionEvent actionEvent){
-    System.out.println(usertypeID.getSelectionModel().getSelectedItem());
+   // System.out.println(usertypeID.getSelectionModel().getSelectedItem());
     if(loginViewModel.checkUserInput(usernameField.getText(), passwordField.getText(),
         usertypeID.getSelectionModel().getSelectedItem()))
     {
@@ -32,10 +32,10 @@ public class LoginViewController implements ViewController
         vh.openAddMenuView();
       }
       else if(usertypeID.getSelectionModel().getSelectedItem().equalsIgnoreCase("Employee")){
-        // vh.openEmployeeOrder
+        // vh.openEmployeeView
         System.out.println("employee view");
       }  else if(usertypeID.getSelectionModel().getSelectedItem().equalsIgnoreCase("Customer")){
-        // vh.openCustomerOrder
+        // vh.openCustomerView
         System.out.println("Customer view");
       }
       else{

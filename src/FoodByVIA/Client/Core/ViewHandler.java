@@ -13,6 +13,9 @@ public class ViewHandler
   private Scene addMenuScene;
   private Scene registerUserScene;
   private Scene loginScene;
+  private Scene selectOrderScene;
+  private Scene tableReservationScene;
+
   private Stage mainStage;
 
   private ViewModelFactory vmf;
@@ -25,7 +28,7 @@ public class ViewHandler
   public void start()
   {
     mainStage = new Stage();
-    openRegisterUserView();
+    openToLoginView();
   }
 
   private Parent loadFXML(String path) throws IOException
@@ -96,6 +99,46 @@ public class ViewHandler
       mainStage.setTitle("Login");
     }
     mainStage.setScene(loginScene);
+    mainStage.show();
+  }
+
+  public void openToSelectOrderScene()
+  {
+    if(selectOrderScene == null)
+    {
+      try
+      {
+        Parent root = loadFXML("../View/MakeOrder/SelectOrderView.fxml");
+
+        selectOrderScene = new Scene(root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+      mainStage.setTitle("Order");
+    }
+    mainStage.setScene(selectOrderScene);
+    mainStage.show();
+  }
+
+  public void openToTableReservation()
+  {
+    if(tableReservationScene == null)
+    {
+      try
+      {
+        Parent root = loadFXML("../View/MakeOrder/TableReservationView.fxml");
+
+        tableReservationScene = new Scene(root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+      mainStage.setTitle("Order");
+    }
+    mainStage.setScene(tableReservationScene);
     mainStage.show();
   }
 

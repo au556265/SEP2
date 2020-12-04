@@ -1,6 +1,7 @@
 package FoodByVIA.DAO.Persistance.User;
 
 import FoodByVIA.DAO.Persistance.Connection;
+import FoodByVIA.Shared.FoodItem;
 import FoodByVIA.Shared.User;
 
 import java.sql.PreparedStatement;
@@ -87,6 +88,36 @@ public class UserDaoManager extends Connection implements UserDAO
         users.add(user);
       }
       return users;
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  @Override public User getUser(String usern)
+  {
+    try(java.sql.Connection connection = getConnection())
+    {
+      PreparedStatement preparedStatement =
+          connection.prepareStatement("select * from Users where username = ?");
+      preparedStatement.setString(1, usern);
+
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      if(resultSet.next()){
+        String name = resultSet.getString("name");
+        String address = resultSet.getString("address");
+        String phoneNumber  = resultSet.getString("phoneNumber");
+        String emailAddress = resultSet.getString("email");
+        String username = resultSet.getString("username");
+        String password = resultSet.getString("password");
+        String userType = resultSet.getString("userType");
+        User user = new User(name, address, phoneNumber, emailAddress, username, password, userType);
+
+        return user;
+      }
     }
     catch (SQLException e)
     {

@@ -25,6 +25,7 @@ public class AddMenuServerModelImpl implements AddMenuServerModel
     {
       foodItemDAO.addMenu(item);
       System.out.println(item.getName() + " Added");
+      support.firePropertyChange("NewFoodItem", null, item);
       support.firePropertyChange("AddMenuMessage", null, "Item Added");
     }
     else
@@ -33,21 +34,6 @@ public class AddMenuServerModelImpl implements AddMenuServerModel
       support.firePropertyChange("AddMenuMessage", null, "Use different item name");
     }
   }
-
-  /*@Override public String addFoodItem(FoodItem item)
-  {
-    if(!(checkFoodItem(item)))
-    {
-      foodItemDAO.addMenu(item);
-      System.out.println(item.getName() + " Added");
-      return "Item added";
-    }
-    else
-    {
-      System.out.println("Item name matched");
-      return "Item name matched";
-    }
-  }*/
 
   private boolean checkFoodItem(FoodItem item)
   {

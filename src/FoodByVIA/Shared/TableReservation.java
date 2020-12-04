@@ -1,6 +1,8 @@
 package FoodByVIA.Shared;
 
-public class TableReservation
+import java.io.Serializable;
+
+public class TableReservation implements Serializable
 {
   private String tableID;
   private int numberOfPeople;

@@ -1,21 +1,21 @@
 package FoodByVIA.Server.Network;
 
-import FoodByVIA.Server.Model.AddMenu.AddMenuServerModel;
-import FoodByVIA.Shared.FoodItem;
+import FoodByVIA.Server.Model.MakeOrder.MakeOrderServerModel;
 import FoodByVIA.Shared.Network.CallBack.MessageCallBack;
-import FoodByVIA.Shared.Network.AddMenu.AddMenuServer;
+import FoodByVIA.Shared.Network.MakeOrder.MakeOrderServer;
+import FoodByVIA.Shared.Order;
 
 import java.beans.PropertyChangeEvent;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-
-public class AddMenuServerImpl implements AddMenuServer
+public class MakeOrderServerImpl implements MakeOrderServer
 {
-  private AddMenuServerModel model;
+  private MakeOrderServerModel model;
   private MessageCallBack client;
 
-  public AddMenuServerImpl(AddMenuServerModel model, MessageCallBack client) throws RemoteException
+  public MakeOrderServerImpl(MakeOrderServerModel model, MessageCallBack client)
+      throws RemoteException
   {
     UnicastRemoteObject.exportObject(this, 0);
     this.client = client;
@@ -25,12 +25,7 @@ public class AddMenuServerImpl implements AddMenuServer
   @Override public void registerClient(MessageCallBack client)
   {
     this.client = client;
-    model.addPropertyChangeListener("AddMenuMessage", this::throwMessage);
-  }
-
-  @Override public void addFoodItem(FoodItem item)
-  {
-    model.addFoodItem(item);
+    model.addPropertyChangeListener("OrderNumber", this::throwMessage);
   }
 
   private void throwMessage(PropertyChangeEvent evt)
@@ -44,5 +39,10 @@ public class AddMenuServerImpl implements AddMenuServer
     {
       throw new RuntimeException("Can't pass message from serverimpl");
     }
+  }
+
+  @Override public void createOrder(Order order)
+  {
+    model.createOrder(order);
   }
 }

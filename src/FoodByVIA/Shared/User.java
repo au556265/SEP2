@@ -23,6 +23,12 @@ public class User implements Serializable
     this.userType = userType;
   }
 
+  public User(String username, String usertype)
+  {
+    this.username = username;
+    userType = usertype;
+  }
+
   public void set(String address, String phoneNumber, String emailAddress, String password)
   {
     this.address = address;

@@ -9,6 +9,5 @@ import java.rmi.RemoteException;
 public interface AddMenuServer extends Remote
 {
    void registerClient(MessageCallBack client) throws RemoteException;
-   void addFoodItem(FoodItem item) throws
-       RemoteException;
+   void addFoodItem(FoodItem item) throws RemoteException;
 }

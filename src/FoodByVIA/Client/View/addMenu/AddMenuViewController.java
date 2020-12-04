@@ -13,25 +13,23 @@ import javafx.util.converter.NumberStringConverter;
 
 public class AddMenuViewController implements ViewController
 {
-  @FXML
-  public TextField foodNameID;
-  @FXML
-  public TextField foodPriceID;
-  @FXML
-  public TextField foodDescriptionID;
-  public Label messageField;
+  @FXML private TextField foodNameID;
+  @FXML private TextField foodPriceID;
+  @FXML private TextField foodDescriptionID;
+  @FXML private Label messageField;
+  @FXML private Label username;
 
   private AddMenuViewModel addMenuViewModel;
   private ViewHandler vh;
 
   @FXML
-  public void addMenuButton(ActionEvent actionEvent)
+  private void addMenuButton(ActionEvent actionEvent)
   {
     addMenuViewModel.addMenu();
   }
 
   @FXML
-  public void cancelMenuButton(ActionEvent actionEvent)
+  private void cancelMenuButton(ActionEvent actionEvent)
   {
     addMenuViewModel.clear();
   }
@@ -42,9 +40,15 @@ public class AddMenuViewController implements ViewController
     this.vh = vh;
     StringConverter<Number> converter = new NumberStringConverter();
     foodNameID.textProperty().bindBidirectional(addMenuViewModel.getName());
-    /*need a method that can change the binding from StringProperty to DoubleProperty*/
     foodPriceID.textProperty().bindBidirectional(addMenuViewModel.getPrice(),converter);
     foodDescriptionID.textProperty().bindBidirectional(addMenuViewModel.getDescription());
     messageField.textProperty().bindBidirectional(addMenuViewModel.getMessage());
+    username.textProperty().bindBidirectional(addMenuViewModel.getUsername());
+  }
+
+  @FXML private void onLogout(ActionEvent actionEvent)
+  {
+    addMenuViewModel.logOut();
+    vh.openToLoginView();
   }
 }

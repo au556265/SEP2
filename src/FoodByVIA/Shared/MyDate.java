@@ -2,7 +2,9 @@ package FoodByVIA.Shared;
 
 import java.time.LocalDate;
 
-public class MyDate
+import java.io.Serializable;
+
+public class MyDate implements Serializable
 {
   private int day;
   private int month;

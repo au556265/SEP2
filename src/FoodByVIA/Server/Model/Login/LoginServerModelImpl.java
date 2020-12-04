@@ -1,6 +1,8 @@
 package FoodByVIA.Server.Model.Login;
 
 import FoodByVIA.DAO.Persistance.User.UserDAO;
+import FoodByVIA.Shared.Catalogue;
+import FoodByVIA.Shared.User;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

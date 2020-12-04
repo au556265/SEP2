@@ -1,6 +1,8 @@
 package FoodByVIA.Client.View.addMenu;
 
 import FoodByVIA.Client.Model.AddMenu.AddMenuModel;
+import FoodByVIA.Shared.Catalogue;
+import FoodByVIA.Shared.User;
 import javafx.application.Platform;
 import javafx.beans.property.*;
 
@@ -13,14 +15,23 @@ public class AddMenuViewModel
   private StringProperty description;
   private StringProperty message;
   private  DoubleProperty price;
+  private StringProperty username;
+
+  private Catalogue catalogue;
+  private User user;
 
   public AddMenuViewModel(AddMenuModel model){
     name = new SimpleStringProperty();
     description  = new SimpleStringProperty();
     price = new SimpleDoubleProperty();
     message = new SimpleStringProperty();
+    username = new SimpleStringProperty();
     this.model=model;
     model.addPropertyChangeListener("AddMenuMessage", this::throwMessage);
+
+    catalogue = Catalogue.getInstance();
+    user = catalogue.getCurrentUser();
+    username.setValue(user.getUsername());
   }
 
   private void throwMessage(PropertyChangeEvent evt)
@@ -66,5 +77,16 @@ public class AddMenuViewModel
   public StringProperty getMessage()
   {
     return message;
+  }
+
+  public StringProperty getUsername()
+  {
+    return username;
+  }
+
+  public void logOut()
+  {
+    catalogue.removeUser(user);
+    username.setValue("");
   }
 }
