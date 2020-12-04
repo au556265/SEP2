@@ -3,10 +3,7 @@ package FoodByVIA.Shared;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 public class Order implements Serializable
 {
@@ -15,21 +12,20 @@ public class Order implements Serializable
   private boolean active;
   private User customer;
   private ArrayList<FoodItem> foodItems = new ArrayList<>();
-  private GregorianCalendar orderDate;
+  private MyDate orderDate;
 
   // add date
-  public Order(User customer, double totalPrice, boolean active){
+  public Order(User customer, double totalPrice, boolean active, MyDate orderDate){
     this.customer=customer;
     this.totalPrice=totalPrice;
     this.active=active;
+    this.orderDate = orderDate;
   }
 
 
   public String getDate(){
-    return "";
+    return orderDate.toString();
   }
-
-
 
 
   public void addFoodItem(FoodItem foodItem){
@@ -37,8 +33,8 @@ public class Order implements Serializable
   }
 
 
-  public String setDate( int year, int month, int day){
-    return year + "-" + month + "-"+day;
+  public void setDate( int year, int month, int day){
+     orderDate.set(year,month,day);
   }
 
   public User getCustomerInformation(){
