@@ -17,4 +17,7 @@ public class DineIn extends Order
     return tableID;
   }
 
+  public String toString(){
+    return super.toString() + " " + tableID;
+  }
 }
