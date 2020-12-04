@@ -1,5 +1,7 @@
 package FoodByVIA.Shared;
 
+import java.time.LocalDate;
+
 public class MyDate
 {
   private int day;
@@ -10,6 +12,10 @@ public class MyDate
     this.day=day;
     this.month=month;
     this.year=year;
+  }
+
+  public LocalDate getLocaldate(){
+    return LocalDate.of(year,month,day);
   }
 
   @SuppressWarnings("WeakerAccess") public void set(int year, int month, int day){

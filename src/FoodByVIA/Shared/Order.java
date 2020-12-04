@@ -14,6 +14,7 @@ public class Order implements Serializable
   private ArrayList<FoodItem> foodItems = new ArrayList<>();
   private MyDate orderDate;
 
+
   // add date
   public Order(User customer, double totalPrice, boolean active, MyDate orderDate){
     this.customer=customer;
@@ -23,9 +24,11 @@ public class Order implements Serializable
   }
 
 
-  public String getDate(){
-    return orderDate.toString();
+  public MyDate getDate(){
+    return orderDate;
   }
+
+
 
 
   public void addFoodItem(FoodItem foodItem){
@@ -41,8 +44,8 @@ public class Order implements Serializable
     return customer;
   }
 
-  public String getCustomer(User user){
-    return user.getUsername();
+  public String getCustomer(){
+    return customer.getUsername();
   }
 
   public ArrayList<FoodItem> getFoodItems(){
@@ -59,5 +62,10 @@ public class Order implements Serializable
   {
     return customer.getName() + " " + orderNumber + " " + foodItems + " " + totalPrice  + " " + active;
     // add is active and date
+  }
+
+  public int getOrdernumber()
+  {
+    return orderNumber;
   }
 }

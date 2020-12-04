@@ -8,10 +8,9 @@ public class TableReservation
 
 
 
-  public TableReservation(int numberOfPeople, String zone, String tableID){
+  public TableReservation(int numberOfPeople, String zone){
     this.numberOfPeople=numberOfPeople;
     this.zone=zone;
-    this.tableID=tableID;
   }
   public void setNumberOfPeople(int numberOfPeople){
     this.numberOfPeople=numberOfPeople;
