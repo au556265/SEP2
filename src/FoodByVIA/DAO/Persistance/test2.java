@@ -37,11 +37,12 @@ public class test2
 
  */
 
-    MyDate myDate = new MyDate(2020,12,24);
-    User user = new User("sara","bellisvej","12345678","sare@hotmail.com","sara","123456","Customer");
-    TableReservation tableReservation = new TableReservation(8,"Family Zone",myDate, user,"f01");
+    MyDate myDate = new MyDate(2020,12,26);
+    User user = new User("sara","bellisvej","12345678", "sare@hotmail.com","sara","123456","Customer");
+    TableReservation tableReservation = new TableReservation(user,myDate,2,"Couple Zone");
     TableReservationDAO tableReservationDAO = new TableReservationDAOManager();
     tableReservationDAO.reserveTable(tableReservation);
+
 
   }
 }

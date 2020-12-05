@@ -18,19 +18,22 @@ public class TableReservationDAOManager extends FoodByVIA.DAO.Persistance.Connec
   {
     try(java.sql.Connection connection = getConnection())
     {
-      PreparedStatement preparedStatement = connection.prepareStatement("UPDATE TableList SET username = ?, for_date = ? WHERE tableID=?" );
+      PreparedStatement preparedStatement = connection.prepareStatement("UPDATE TableList SET username = ?, "
+          + "for_date = ?, is_available = ? WHERE capacity = ? and for_zone = ?;" );
       preparedStatement.setString(1,reservation.getUsername());
       preparedStatement.setObject(2,reservation.getDate().getLocaldate());
-      preparedStatement.setString(3,reservation.getTableID());
-
+      preparedStatement.setBoolean(3,false);
+      preparedStatement.setInt(4,reservation.getNumberOfPeople());
+      preparedStatement.setString(5,reservation.getZone());
 
       preparedStatement.executeUpdate();
-
+      System.out.println(preparedStatement);
     }
     catch (SQLException throwables)
     {
       throwables.printStackTrace();
     }
   }
+
 
 }

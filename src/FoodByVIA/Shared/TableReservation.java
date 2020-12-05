@@ -11,11 +11,12 @@ public class TableReservation implements Serializable
   private User user;
   private MyDate tableDate;
 
-  public TableReservation(int numberOfPeople, String zone, MyDate tableDate, User user, String tableID){
+  //where capazity and zone
+  public TableReservation( User user, MyDate tableDate, int numberOfPeople, String zone){
     this.tableDate=tableDate;
     this.zone=zone;
+    this.numberOfPeople=numberOfPeople;
     this.user = user;
-    this.tableID=tableID;
 
   }
 
