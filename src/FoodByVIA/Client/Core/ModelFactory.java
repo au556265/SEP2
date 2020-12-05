@@ -49,12 +49,12 @@ public class ModelFactory
     return loginModel;
   }
 
- /* public MakeOrderModel getMakeOrderModel()
+  public MakeOrderModel getMakeOrderModel()
   {
     if(makeOrderModel == null)
     {
       makeOrderModel = new MakeOrderModelImpl(cf.getMakeOrderClient());
     }
     return makeOrderModel;
-  }*/
+  }
 }
