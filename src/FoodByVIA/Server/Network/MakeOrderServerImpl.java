@@ -32,8 +32,8 @@ public class MakeOrderServerImpl implements MakeOrderServer
   {
     try
     {
-      String message = (String) evt.getNewValue();
-      client.getMessage(message);
+      int message = (int) evt.getNewValue();
+      client.getMessage(Integer.toString(message));
     }
     catch (RemoteException e)
     {

@@ -3,6 +3,7 @@ package FoodByVIA.Client.Model.MakeOrder;
 import FoodByVIA.Client.Network.MakeOrder.MakeOrderClient;
 import FoodByVIA.Shared.Order;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -16,6 +17,12 @@ public class MakeOrderModelImpl implements MakeOrderModel
     this.client = client;
     client.startClient();
     support = new PropertyChangeSupport(this);
+    client.addPropertyChangeListener("OrderNumber", this::addOrderNumber);
+  }
+
+  private void addOrderNumber(PropertyChangeEvent evt)
+  {
+    support.firePropertyChange(evt);
   }
 
   @Override public void createOrder(Order order)

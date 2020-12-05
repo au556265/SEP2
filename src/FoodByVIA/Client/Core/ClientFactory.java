@@ -5,7 +5,7 @@ import FoodByVIA.Client.Network.AddMenu.AddMenuClientImpl;
 import FoodByVIA.Client.Network.Login.LoginClient;
 import FoodByVIA.Client.Network.Login.LoginClientImpl;
 import FoodByVIA.Client.Network.MakeOrder.MakeOrderClient;
-import FoodByVIA.Client.Network.MakeOrder.MakeOrderClientImpl;
+//import FoodByVIA.Client.Network.MakeOrder.MakeOrderClientImpl;
 import FoodByVIA.Client.Network.RegisterUser.RegisterUserClient;
 import FoodByVIA.Client.Network.RegisterUser.RegisterUserClientImpl;
 
@@ -46,7 +46,7 @@ public class ClientFactory
   {
     if(makeOrderClient == null)
     {
-      makeOrderClient = new MakeOrderClientImpl();
+      //makeOrderClient = new MakeOrderClientImpl();
     }
     return makeOrderClient;
   }

@@ -19,7 +19,7 @@ public class MakeOrderServerModelImpl implements MakeOrderServerModel
 
   @Override public void createOrder(Order order)
   {
-    //ToDo validate
+    //ToDo get all the list of orders for the day and validate the number of order
     orderDAO.createOrder(order);
     support.firePropertyChange("OrderNumber", null, order.getOrdernumber());
   }

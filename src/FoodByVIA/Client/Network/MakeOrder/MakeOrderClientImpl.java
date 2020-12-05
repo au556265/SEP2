@@ -7,6 +7,7 @@ import FoodByVIA.Shared.Network.MakeOrder.MakeOrderServer;
 import FoodByVIA.Shared.Order;
 import FoodByVIA.Shared.User;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -18,7 +19,6 @@ public class MakeOrderClientImpl
   private MakeOrderServer makeOrderServer;
   private NetworkConnection networkConnection;
   private PropertyChangeSupport support;
-  private Order order;
 
   public MakeOrderClientImpl()
   {
@@ -30,7 +30,6 @@ public class MakeOrderClientImpl
   {
     try
     {
-
       makeOrderServer = networkConnection.getServerInterface().getMakeOrderServerImpl();
       makeOrderServer.registerClient(this);
     }
@@ -55,7 +54,18 @@ public class MakeOrderClientImpl
 
   @Override public void getMessage(String message)
   {
-    support.firePropertyChange("CreateOrder", null, message);
+    support.firePropertyChange("OrderNumber", null, message);
+  }
 
+  @Override public void addPropertyChangeListener(String name,
+      PropertyChangeListener listener)
+  {
+    support.addPropertyChangeListener(name, listener);
+  }
+
+  @Override public void removerPropertyChangeListener(String name,
+      PropertyChangeListener listener)
+  {
+    support.removePropertyChangeListener(name, listener);
   }
 }
