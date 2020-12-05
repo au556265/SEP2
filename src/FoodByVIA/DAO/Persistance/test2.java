@@ -4,12 +4,11 @@ import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
 import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDaoManager;
 import FoodByVIA.DAO.Persistance.Order.OrderDAO;
 import FoodByVIA.DAO.Persistance.Order.OrderDAOManager;
+import FoodByVIA.DAO.Persistance.TableReservation.TableReservationDAO;
+import FoodByVIA.DAO.Persistance.TableReservation.TableReservationDAOManager;
 import FoodByVIA.DAO.Persistance.User.UserDAO;
 import FoodByVIA.DAO.Persistance.User.UserDaoManager;
-import FoodByVIA.Shared.FoodItem;
-import FoodByVIA.Shared.MyDate;
-import FoodByVIA.Shared.Order;
-import FoodByVIA.Shared.User;
+import FoodByVIA.Shared.*;
 
 public class test2
 {
@@ -26,8 +25,7 @@ public class test2
 
      */
 
-    //boolean v;
-    MyDate myDate = new MyDate(2020,12,24);
+/*    MyDate myDate = new MyDate(2020,12,24);
     User user = new User("Fatema","bellisvej10","25885212","sare@hotmail.com","sara","123456","Customer");
     FoodItem foodItem = new FoodItem("pizza",60, null);
     FoodItem foodItem1 = new FoodItem("lasagna",60, null);
@@ -36,5 +34,14 @@ public class test2
     order.addFoodItem(foodItem);
     OrderDAO orderDAO = new OrderDAOManager();
     orderDAO.createOrder(order);
+
+ */
+
+    MyDate myDate = new MyDate(2020,12,24);
+    User user = new User("sara","bellisvej","12345678","sare@hotmail.com","sara","123456","Customer");
+    TableReservation tableReservation = new TableReservation(8,"Family Zone",myDate, user,"f01");
+    TableReservationDAO tableReservationDAO = new TableReservationDAOManager();
+    tableReservationDAO.reserveTable(tableReservation);
+
   }
 }
