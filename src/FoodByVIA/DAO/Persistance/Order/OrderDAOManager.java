@@ -41,12 +41,12 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
 
     }
     catch(SQLException throwables){
-      System.out.println(throwables);
+      throwables.printStackTrace();
     }
 
     if(ordernumber!=0)
     {
-      for (FoodItem foodItem : order.getFoodItems())
+      for (FoodItem foodItem : order.getSelectedFoodItems())
       {
         createOrderFood(foodItem, ordernumber);
       }
@@ -69,7 +69,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
 
     }
     catch(SQLException throwables){
-      System.out.println(throwables);
+      throwables.printStackTrace();
     }
   }
 
