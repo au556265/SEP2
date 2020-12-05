@@ -8,38 +8,21 @@ public class TableReservation implements Serializable
   private int numberOfPeople;
   private String zone;
 
-
-
   public TableReservation(int numberOfPeople, String zone){
     this.numberOfPeople=numberOfPeople;
     this.zone=zone;
-  }
-  public void setNumberOfPeople(int numberOfPeople){
-    this.numberOfPeople=numberOfPeople;
   }
 
   public int getNumberOfPeople(){
     return numberOfPeople;
   }
 
-  public void setZone(String zone){
-    this.zone=zone;
-  }
-
-  public String setZone(){
+  public String getZone(){
     return zone;
-  }
-
-  public void setTableID( String tableID){
-
-    this.tableID=tableID;
   }
 
   public String getTableID()
   {
-
     return tableID;
   }
-
-
 }

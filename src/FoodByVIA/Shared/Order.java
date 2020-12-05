@@ -28,16 +28,8 @@ public class Order implements Serializable
     return orderDate;
   }
 
-
-
-
   public void addFoodItem(FoodItem foodItem){
     foodItems.add(foodItem);
-  }
-
-
-  public void setDate( int year, int month, int day){
-     orderDate.set(year,month,day);
   }
 
   public User getCustomerInformation(){
@@ -48,7 +40,7 @@ public class Order implements Serializable
     return customer.getUsername();
   }
 
-  public ArrayList<FoodItem> getFoodItems(){
+  public ArrayList<FoodItem> getSelectedFoodItems(){
     return foodItems;
   }
 
