@@ -25,8 +25,9 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
     {
       PreparedStatement preparedStatement =
           connection.prepareStatement(
-              "insert into Orders(username,dateTo) values(?,?);",Statement.RETURN_GENERATED_KEYS);
+              "insert into Orders(username, dateTo) values(?,?);",Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1,order.getCustomer());
+      //preparedStatement.setBoolean(2,order.isActive());
       preparedStatement.setObject(2,order.getDate().getLocaldate());
       //execute prepared statement and get ordernumber from it
 

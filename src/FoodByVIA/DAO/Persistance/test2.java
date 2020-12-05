@@ -26,11 +26,12 @@ public class test2
 
      */
 
+    //boolean v;
     MyDate myDate = new MyDate(2020,12,24);
-    User user = new User("Fatema","bellisvej10","25885212","sare@hotmail.com","priyanka","123456","Customer");
+    User user = new User("Fatema","bellisvej10","25885212","sare@hotmail.com","sara","123456","Customer");
     FoodItem foodItem = new FoodItem("pizza",60, null);
     FoodItem foodItem1 = new FoodItem("lasagna",60, null);
-    Order order = new Order(user,0,true,myDate);
+    Order order = new Order(user,0,myDate);
     order.addFoodItem(foodItem1);
     order.addFoodItem(foodItem);
     OrderDAO orderDAO = new OrderDAOManager();

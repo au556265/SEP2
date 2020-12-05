@@ -15,11 +15,18 @@ public class Order implements Serializable
   private MyDate orderDate;
 
 
-  // add date
+  /*
   public Order(User customer, double totalPrice, boolean active, MyDate orderDate){
     this.customer=customer;
     this.totalPrice=totalPrice;
+    this.orderDate = orderDate;
     this.active=active;
+  }
+   */
+
+  public Order(User customer, double totalPrice, MyDate orderDate){
+    this.customer=customer;
+    this.totalPrice=totalPrice;
     this.orderDate = orderDate;
   }
 
@@ -48,6 +55,7 @@ public class Order implements Serializable
   {
     return active;
   }
+
 
 
   @Override public String toString()
