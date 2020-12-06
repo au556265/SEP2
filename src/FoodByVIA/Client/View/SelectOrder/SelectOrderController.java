@@ -53,7 +53,7 @@ public class SelectOrderController implements ViewController
     {
       messageField.setText("Please select a date");
     }
-    else if(selectedItem.getItems() == null)
+    else if(selectedItem.getItems().size() == 0)
     {
       messageField.setText("Please select from the menu. You have to double click on Show Menu to see the menu. :)");
     }
