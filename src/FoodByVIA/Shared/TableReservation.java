@@ -1,39 +1,67 @@
 package FoodByVIA.Shared;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class TableReservation implements Serializable
 {
   private String tableID;
   private int numberOfPeople;
   private String zone;
-  private boolean tableReserved;
-  private User user;
-  private MyDate tableDate;
+  private String username;
+  private LocalDate localDate;
+  private boolean isAvailable;
+  private int day, month, year;
 
-  //where capazity and zone
-  public TableReservation( User user, MyDate tableDate, int numberOfPeople, String zone){
-    this.tableDate=tableDate;
+
+  public TableReservation(String user, LocalDate localDate, int numberOfPeople, String zone, String tableID){
+    this.localDate=localDate;
     this.zone=zone;
     this.numberOfPeople=numberOfPeople;
-    this.user = user;
-
+    username = user;
+    this.tableID=tableID;
   }
 
-  public boolean isTableReserved()
+public TableReservation(){ }
+
+  public void setTableID(String tableID)
   {
-    return tableReserved;
+    this.tableID = tableID;
   }
 
-  public MyDate getDate(){
-    return tableDate;
+  public void setNumberOfPeople(int numberOfPeople)
+  {
+    this.numberOfPeople = numberOfPeople;
   }
+
+  public void setZone(String zone)
+  {
+    this.zone = zone;
+  }
+
+  public void setUsername(String username)
+  {
+    this.username = username;
+  }
+
+  public void setLocalDate(LocalDate localDate)
+  {
+    this.localDate = localDate;
+  }
+
+
+
+  public LocalDate getLocalDate()
+  {
+    return localDate;
+  }
+
   public int getNumberOfPeople(){
     return numberOfPeople;
   }
 
   public String getUsername(){
-    return user.getUsername();
+    return username;
   }
 
   public String getZone(){
@@ -43,5 +71,11 @@ public class TableReservation implements Serializable
   public String getTableID()
   {
     return tableID;
+  }
+
+  @Override public String toString()
+  {
+    return "tableID: " + tableID + " number of people: " + numberOfPeople +
+        " zone: " + zone + " Date: " + localDate;
   }
 }

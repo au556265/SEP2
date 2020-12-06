@@ -16,22 +16,6 @@ public class Order implements Serializable
   private LocalDate orderDate;
 
 
-  /*
-  public Order(User customer, double totalPrice, boolean active, MyDate orderDate){
-    this.customer=customer;
-    this.totalPrice=totalPrice;
-    this.orderDate = orderDate;
-    this.active=active;
-  }
-   */
-
-/*  public Order(String  customer, double totalPrice, LocalDate orderDate, List<FoodItem> items){
-    this.customer=customer;
-    this.totalPrice=totalPrice;
-    this.orderDate = orderDate;
-    foodItems = items;
-  }*/
-
   public Order(String  customer, double totalPrice, LocalDate orderDate)
   {
     this.customer = customer;
