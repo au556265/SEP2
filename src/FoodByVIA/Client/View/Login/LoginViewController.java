@@ -13,7 +13,6 @@ import java.awt.*;
 
 public class LoginViewController implements ViewController
 {
-
   @FXML private Label messageLabel;
   @FXML private ComboBox<String> usertypeID;
   @FXML private TextField passwordField;
@@ -23,7 +22,6 @@ public class LoginViewController implements ViewController
 
 
   @FXML private void loginButton(ActionEvent actionEvent){
-   // System.out.println(usertypeID.getSelectionModel().getSelectedItem());
     if(loginViewModel.checkUserInput(usernameField.getText(), passwordField.getText(),
         usertypeID.getSelectionModel().getSelectedItem()))
     {

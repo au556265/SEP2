@@ -25,12 +25,12 @@ public class Order implements Serializable
   }
    */
 
-  public Order(String  customer, double totalPrice, LocalDate orderDate, List<FoodItem> items){
+/*  public Order(String  customer, double totalPrice, LocalDate orderDate, List<FoodItem> items){
     this.customer=customer;
     this.totalPrice=totalPrice;
     this.orderDate = orderDate;
     foodItems = items;
-  }
+  }*/
 
   public Order(String  customer, double totalPrice, LocalDate orderDate)
   {
@@ -47,10 +47,6 @@ public class Order implements Serializable
 
   public void addFoodItem(FoodItem foodItem){
     foodItems.add(foodItem);
-  }
-
-  public String  getCustomerInformation(){
-    return customer;
   }
 
   public String getCustomer(){

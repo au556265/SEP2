@@ -6,8 +6,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface MakeOrderCallBack extends Remote
+public interface MakeOrderCallBack extends Remote, MessageCallBack
 {
   void additems(ArrayList<FoodItem> items) throws RemoteException;
-  void getMessage(String message) throws RemoteException;
 }
