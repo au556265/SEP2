@@ -3,15 +3,11 @@ package FoodByVIA.Client.Network.MakeOrder;
 import FoodByVIA.Client.Network.NetworkConnection;
 import FoodByVIA.Shared.FoodItem;
 import FoodByVIA.Shared.Network.CallBack.MakeOrderCallBack;
-import FoodByVIA.Shared.Network.CallBack.MessageCallBack;
-import FoodByVIA.Shared.MyDate;
 import FoodByVIA.Shared.Network.MakeOrder.MakeOrderServer;
 import FoodByVIA.Shared.Order;
-import FoodByVIA.Shared.User;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
