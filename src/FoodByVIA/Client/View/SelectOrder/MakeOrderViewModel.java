@@ -42,7 +42,7 @@ public class MakeOrderViewModel
   private void addMessage(PropertyChangeEvent evt)
   {
     String orderNumber = (String) evt.getNewValue();
-    message.setValue(orderNumber);
+    Platform.runLater(() -> message.setValue(orderNumber));
   }
 
   private void addInMenu(PropertyChangeEvent evt)
@@ -78,7 +78,11 @@ public class MakeOrderViewModel
 
   public void createOrder(LocalDate date, List<FoodItem> items)
   {
-    Order order = new Order(user.getValue(), price, date, items);
+    Order order = new Order(user.getValue(), price, date);
+    for(FoodItem item: items)
+    {
+      order.addFoodItem(item);
+    }
     makeOrderModel.createOrder(order);
   }
 

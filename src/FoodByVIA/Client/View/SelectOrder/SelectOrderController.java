@@ -49,7 +49,18 @@ public class SelectOrderController implements ViewController
 
   @FXML private void orderTakeawayButton(ActionEvent actionEvent)
   {
-    makeOrderViewModel.createOrder(datePicker.getValue(), selectedItem.getItems());
+    if(datePicker.getValue() == null)
+    {
+      messageField.setText("Please select a date");
+    }
+    else if(selectedItem.getItems() == null)
+    {
+      messageField.setText("Please select from the menu. You have to double click on Show Menu to see the menu. :)");
+    }
+    else
+    {
+      makeOrderViewModel.createOrder(datePicker.getValue(), selectedItem.getItems());
+    }
   }
 
   @FXML private void onLogout(ActionEvent actionEvent)

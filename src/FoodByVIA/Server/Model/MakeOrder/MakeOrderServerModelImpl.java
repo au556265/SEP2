@@ -20,14 +20,13 @@ public class MakeOrderServerModelImpl implements MakeOrderServerModel
     this.orderDAO = orderDAO;
     this.foodItemDAO = foodItemDAO;
     support = new PropertyChangeSupport(this);
-
   }
 
   @Override public void createOrder(Order order)
   {
     //ToDo get all the list of orders for the day and validate the number of order
     orderDAO.createOrder(order);
-    support.firePropertyChange("OrderNumber", null, order.getOrdernumber());
+    support.firePropertyChange("OrderNumber", null, "Your order number is " + order.getOrdernumber());
   }
 
   @Override public void showMenu()

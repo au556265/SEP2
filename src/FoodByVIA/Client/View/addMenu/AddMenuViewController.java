@@ -51,4 +51,9 @@ public class AddMenuViewController implements ViewController
     addMenuViewModel.logOut();
     vh.openToLoginView();
   }
+
+  @FXML private void onMakeOrder(ActionEvent actionEvent)
+  {
+    vh.openToSelectOrderScene();
+  }
 }

@@ -66,6 +66,7 @@ public class LoginViewModel
       Catalogue catalogue = Catalogue.getInstance();
       User user = new User(username, usertype);
       catalogue.saveCurrentUser(user);
+      clear();
     }
     return loginModel.checkUserInput(username, password, usertype);
   }

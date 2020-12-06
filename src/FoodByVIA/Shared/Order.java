@@ -32,6 +32,14 @@ public class Order implements Serializable
     foodItems = items;
   }
 
+  public Order(String  customer, double totalPrice, LocalDate orderDate)
+  {
+    this.customer = customer;
+    this.totalPrice = totalPrice;
+    this.orderDate = orderDate;
+    foodItems = new ArrayList<>();
+  }
+
 
   public LocalDate getDate(){
     return orderDate;
@@ -69,5 +77,10 @@ public class Order implements Serializable
   public int getOrdernumber()
   {
     return orderNumber;
+  }
+
+  public void setOrderNumber(int ordernumber)
+  {
+    this.orderNumber = ordernumber;
   }
 }

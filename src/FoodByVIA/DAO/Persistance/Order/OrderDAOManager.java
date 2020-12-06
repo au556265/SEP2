@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
     implements OrderDAO
 {
-
   public java.sql.Connection getConnection() throws SQLException
   {
     return super.getConnection();
@@ -36,7 +35,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
         System.out.println(res.getInt(1));
         ordernumber = res.getInt(1);
       }
-
+      order.setOrderNumber(ordernumber);
     }
     catch(SQLException throwables){
       throwables.printStackTrace();

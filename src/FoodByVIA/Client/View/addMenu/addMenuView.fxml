@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -35,6 +36,14 @@
             </Label>
             <Separator layoutX="-3.0" layoutY="59.0" prefWidth="200.0" />
             <Button layoutX="46.0" layoutY="631.0" mnemonicParsing="false" onAction="#onLogout" prefHeight="25.0" prefWidth="84.0" text="Logout" />
+            <Button layoutY="62.0" mnemonicParsing="false" onAction="#onMakeOrder" prefHeight="25.0" prefWidth="194.0" style="-fx-background-color: #333333;" text="Make an order" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </Button>
          </children>
       </Pane>
       <Label fx:id="messageField" layoutX="196.0" layoutY="482.0" prefHeight="26.0" prefWidth="640.0" textFill="RED">

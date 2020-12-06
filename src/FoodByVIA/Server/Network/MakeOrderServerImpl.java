@@ -49,8 +49,8 @@ public class MakeOrderServerImpl implements MakeOrderServer
   {
     try
     {
-      int message = (int) evt.getNewValue();
-      client.getMessage(Integer.toString(message));
+      String  message = (String) evt.getNewValue();
+      client.getMessage(message);
     }
     catch (RemoteException e)
     {
@@ -61,7 +61,6 @@ public class MakeOrderServerImpl implements MakeOrderServer
   @Override public void createOrder(Order order)
   {
     model.createOrder(order);
-    System.out.println(order.getCustomer() + order.getDate() + order.getSelectedFoodItems());
   }
 
   @Override public void showMenu()
