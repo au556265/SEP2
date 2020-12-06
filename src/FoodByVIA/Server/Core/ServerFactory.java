@@ -82,7 +82,7 @@ public class ServerFactory implements ServerInterface
     {
       try
       {
-        makeOrderServer = new MakeOrderServerImpl(modelFactory.getMakeOrderServerModel(), callBackFactory.getMessageCallBack());
+        makeOrderServer = new MakeOrderServerImpl(modelFactory.getMakeOrderServerModel(), callBackFactory.getMakeOrderCallBack());
       }
       catch(RemoteException e)
       {

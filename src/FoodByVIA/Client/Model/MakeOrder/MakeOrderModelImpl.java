@@ -18,6 +18,12 @@ public class MakeOrderModelImpl implements MakeOrderModel
     client.startClient();
     support = new PropertyChangeSupport(this);
     client.addPropertyChangeListener("OrderNumber", this::addOrderNumber);
+    client.addPropertyChangeListener("FoodItems", this::addItem);
+  }
+
+  private void addItem(PropertyChangeEvent evt)
+  {
+    support.firePropertyChange(evt);
   }
 
   private void addOrderNumber(PropertyChangeEvent evt)
@@ -28,6 +34,11 @@ public class MakeOrderModelImpl implements MakeOrderModel
   @Override public void createOrder(Order order)
   {
     client.createOrder(order);
+  }
+
+  @Override public void showMenu()
+  {
+    client.showMenu();
   }
 
   @Override public void addPropertyChangeListener(String name,

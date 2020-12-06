@@ -54,7 +54,7 @@ public class ServerModelFactory
   {
     if(makeOrderServerModel == null)
     {
-      makeOrderServerModel = new MakeOrderServerModelImpl(daoFactory.getOrderDAO());
+      makeOrderServerModel = new MakeOrderServerModelImpl(daoFactory.getOrderDAO(), daoFactory.getFoodItemDAO());
     }
     return makeOrderServerModel;
   }

@@ -7,4 +7,5 @@ public interface MakeOrderModel extends PropertyChangeSubject
 {
   void createOrder(Order order);
 
+  void showMenu();
 }

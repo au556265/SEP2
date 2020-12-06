@@ -3,6 +3,7 @@ package FoodByVIA.Shared;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Order implements Serializable
@@ -10,9 +11,9 @@ public class Order implements Serializable
   private double totalPrice;
   private int orderNumber;
   private boolean active;
-  private User customer;
-  private ArrayList<FoodItem> foodItems = new ArrayList<>();
-  private MyDate orderDate;
+  private String  customer;
+  private List<FoodItem> foodItems;
+  private LocalDate orderDate;
 
 
   /*
@@ -24,14 +25,15 @@ public class Order implements Serializable
   }
    */
 
-  public Order(User customer, double totalPrice, MyDate orderDate){
+  public Order(String  customer, double totalPrice, LocalDate orderDate, List<FoodItem> items){
     this.customer=customer;
     this.totalPrice=totalPrice;
     this.orderDate = orderDate;
+    foodItems = items;
   }
 
 
-  public MyDate getDate(){
+  public LocalDate getDate(){
     return orderDate;
   }
 
@@ -39,15 +41,15 @@ public class Order implements Serializable
     foodItems.add(foodItem);
   }
 
-  public User getCustomerInformation(){
+  public String  getCustomerInformation(){
     return customer;
   }
 
   public String getCustomer(){
-    return customer.getUsername();
+    return customer;
   }
 
-  public ArrayList<FoodItem> getSelectedFoodItems(){
+  public List<FoodItem> getSelectedFoodItems(){
     return foodItems;
   }
 
@@ -60,7 +62,7 @@ public class Order implements Serializable
 
   @Override public String toString()
   {
-    return customer.getName() + " " + orderNumber + " " + foodItems + " " + totalPrice  + " " + active;
+    return customer + " " + orderNumber + " " + foodItems + " " + totalPrice  + " " + active;
     // add is active and date
   }
 

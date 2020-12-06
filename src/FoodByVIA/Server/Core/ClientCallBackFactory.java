@@ -1,11 +1,14 @@
 package FoodByVIA.Server.Core;
 
 import FoodByVIA.Client.Network.AddMenu.AddMenuClientImpl;
+import FoodByVIA.Client.Network.MakeOrder.MakeOrderClientImpl;
+import FoodByVIA.Shared.Network.CallBack.MakeOrderCallBack;
 import FoodByVIA.Shared.Network.CallBack.MessageCallBack;
 
 public class ClientCallBackFactory
 {
   private MessageCallBack messageCallBack;
+  private MakeOrderCallBack makeOrderCallBack;
 
   public MessageCallBack getMessageCallBack()
   {
@@ -14,5 +17,14 @@ public class ClientCallBackFactory
       messageCallBack = new AddMenuClientImpl();
     }
     return messageCallBack;
+  }
+
+  public MakeOrderCallBack getMakeOrderCallBack()
+  {
+    if(makeOrderCallBack == null)
+    {
+      makeOrderCallBack = new MakeOrderClientImpl();
+    }
+    return makeOrderCallBack;
   }
 }

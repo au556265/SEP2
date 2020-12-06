@@ -108,7 +108,7 @@ public class ViewHandler
     {
       try
       {
-        Parent root = loadFXML("../View/MakeOrder/SelectOrderView.fxml");
+        Parent root = loadFXML("../View/SelectOrder/MakeOrderView.fxml");
 
         selectOrderScene = new Scene(root);
       }

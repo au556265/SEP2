@@ -3,10 +3,7 @@ package FoodByVIA.DAO.Persistance.Order;
 import FoodByVIA.Shared.FoodItem;
 import FoodByVIA.Shared.Order;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
@@ -21,14 +18,14 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
   @Override public void createOrder(Order order)
   {
     int ordernumber=0;
-    try(java.sql.Connection connection = getConnection())
+    try(Connection connection = getConnection())
     {
       PreparedStatement preparedStatement =
           connection.prepareStatement(
               "insert into Orders(username, dateTo) values(?,?);",Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1,order.getCustomer());
       //preparedStatement.setBoolean(2,order.isActive());
-      preparedStatement.setObject(2,order.getDate().getLocaldate());
+      preparedStatement.setObject(2,order.getDate());
       //execute prepared statement and get ordernumber from it
 
       preparedStatement.execute();
@@ -51,7 +48,6 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
       {
         createOrderFood(foodItem, ordernumber);
       }
-
     }
 
   }
@@ -66,8 +62,6 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
       preparedStatement.setString(2,foodItem.getName());
       preparedStatement.setInt(3,1);
       preparedStatement.execute();
-
-
     }
     catch(SQLException throwables){
       throwables.printStackTrace();

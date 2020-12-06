@@ -7,4 +7,5 @@ public interface MakeOrderClient extends PropertyChangeSubject
 {
   void startClient();
   void createOrder(Order order);
+  void showMenu();
 }

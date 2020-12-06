@@ -6,4 +6,5 @@ import FoodByVIA.Shared.Util.PropertyChangeSubject;
 public interface MakeOrderServerModel extends PropertyChangeSubject
 {
   void createOrder(Order order);
+  void showMenu();
 }

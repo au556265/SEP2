@@ -1,6 +1,8 @@
 package FoodByVIA.Client.Network.MakeOrder;
 
 import FoodByVIA.Client.Network.NetworkConnection;
+import FoodByVIA.Shared.FoodItem;
+import FoodByVIA.Shared.Network.CallBack.MakeOrderCallBack;
 import FoodByVIA.Shared.Network.CallBack.MessageCallBack;
 import FoodByVIA.Shared.MyDate;
 import FoodByVIA.Shared.Network.MakeOrder.MakeOrderServer;
@@ -12,9 +14,10 @@ import java.beans.PropertyChangeSupport;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 public class MakeOrderClientImpl
-    implements MakeOrderClient,MessageCallBack
+    implements MakeOrderClient, MakeOrderCallBack
 {
   private MakeOrderServer makeOrderServer;
   private NetworkConnection networkConnection;
@@ -30,6 +33,7 @@ public class MakeOrderClientImpl
   {
     try
     {
+      UnicastRemoteObject.exportObject(this, 0);
       makeOrderServer = networkConnection.getServerInterface().getMakeOrderServerImpl();
       makeOrderServer.registerClient(this);
     }
@@ -37,7 +41,6 @@ public class MakeOrderClientImpl
     {
       throw new RuntimeException("Error");
     }
-
   }
 
   @Override public void createOrder(Order order)
@@ -49,7 +52,26 @@ public class MakeOrderClientImpl
     catch (RemoteException e)
     {
       e.printStackTrace();
+
+      throw new RuntimeException("Error from Client");
     }
+  }
+
+  @Override public void showMenu()
+  {
+    try
+    {
+      makeOrderServer.showMenu();
+    }
+    catch (RemoteException e)
+    {
+      throw new RuntimeException("Error from Client");
+    }
+  }
+
+  @Override public void additems(ArrayList<FoodItem> item)
+  {
+    support.firePropertyChange("FoodItems", null, item);
   }
 
   @Override public void getMessage(String message)
