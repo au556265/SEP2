@@ -43,6 +43,7 @@ public class SelectOrderController implements ViewController
   {
     FoodItem foodItem = menu.getSelectionModel().getSelectedItem();
     selectedItem.getItems().add(foodItem);
+
     makeOrderViewModel.addToTotalPrice(foodItem);
   }
 

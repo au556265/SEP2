@@ -5,6 +5,7 @@ import FoodByVIA.Shared.Order;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
     implements OrderDAO
@@ -43,15 +44,20 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
 
     if(ordernumber!=0)
     {
+      ArrayList<FoodItem> added = new ArrayList<>();
       for (FoodItem foodItem : order.getSelectedFoodItems())
       {
-        createOrderFood(foodItem, ordernumber);
+        if(!added.contains(foodItem)){
+          int amount = Collections.frequency(order.getSelectedFoodItems(),foodItem);
+        createOrderFood(foodItem, ordernumber, amount);
+        added.add(foodItem);
+        }
       }
     }
 
   }
 
-  private void createOrderFood(FoodItem foodItem, int ordernumber){
+  private void createOrderFood(FoodItem foodItem, int ordernumber, int amount){
     try(java.sql.Connection connection = getConnection())
     {
       PreparedStatement preparedStatement =
@@ -59,7 +65,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
               "insert into Orders_FoodItems(ordernumber, foodItemName,amount) values(?,?,?);");
       preparedStatement.setInt(1,ordernumber);
       preparedStatement.setString(2,foodItem.getName());
-      preparedStatement.setInt(3,1);
+      preparedStatement.setInt(3,amount);
       preparedStatement.execute();
     }
     catch(SQLException throwables){
