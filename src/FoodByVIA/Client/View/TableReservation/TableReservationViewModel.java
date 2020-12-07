@@ -5,12 +5,14 @@ import FoodByVIA.Client.Model.TableReservation.TableReservationModel;
 import FoodByVIA.Shared.Catalogue;
 import FoodByVIA.Shared.TableReservation;
 import FoodByVIA.Shared.User;
+import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.beans.PropertyChangeEvent;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,6 +52,21 @@ public class TableReservationViewModel
     catalogue = Catalogue.getInstance();
     user = catalogue.getCurrentUser();
     username.setValue(user.getUsername());
+
+    model.addPropertyChangeListener("TableBookingConfirmation", this::bookingConfirmation);
+    model.addPropertyChangeListener("AvailableTables", this::addTables);
+  }
+
+  private void bookingConfirmation(PropertyChangeEvent evt)
+  {
+    String confirmation = (String) evt.getNewValue();
+    Platform.runLater(() -> message.setValue(confirmation));
+  }
+
+  private void addTables(PropertyChangeEvent evt)
+  {
+    ArrayList<TableReservation> tableList = (ArrayList<TableReservation>) evt.getNewValue();
+    Platform.runLater(() -> tables.setAll(tableList));
   }
 
   public List<Integer> getNumberOfPeople()
@@ -73,9 +90,10 @@ public class TableReservationViewModel
     username.setValue("");
   }
 
-  public void reserveTable()
+  public void reserveTable(LocalDate date, int capacity, String zone, String tableId)
   {
-    //TODO add a model and call a method from the model
+    TableReservation table = new TableReservation(username.getValue(), date, capacity, zone, tableId);
+    model.reserveTable(table);
   }
 
   public void clear()

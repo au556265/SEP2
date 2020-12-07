@@ -13,20 +13,20 @@ public class TableReservationModelImpl implements TableReservationModel
   private PropertyChangeSupport support;
   private TableReservationClient client;
 
-
   public TableReservationModelImpl(TableReservationClient client)
   {
     this.client = client;
     client.startClient();
     support = new PropertyChangeSupport(this);
-    client.addPropertyChangeListener("reserved",null);
-
+    client.addPropertyChangeListener("TableBookingConfirmation",this::bookingConfirmation);
+    client.addPropertyChangeListener("AvailableTables", this::addTables);
   }
+
   private void addTables(PropertyChangeEvent evt)
   {
     support.firePropertyChange(evt);
-
   }
+
   private void bookingConfirmation(PropertyChangeEvent evt)
   {
     support.firePropertyChange(evt);
@@ -34,7 +34,7 @@ public class TableReservationModelImpl implements TableReservationModel
 
   @Override public void reserveTable(TableReservation table)
   {
- client.reserveTable(table);
+    client.reserveTable(table);
   }
 
   @Override public void search(LocalDate date, int capacity, String floor)
@@ -52,6 +52,5 @@ public class TableReservationModelImpl implements TableReservationModel
       PropertyChangeListener listener)
   {
     support.removePropertyChangeListener(name,listener);
-
   }
 }

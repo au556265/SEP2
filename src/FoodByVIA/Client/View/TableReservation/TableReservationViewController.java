@@ -38,8 +38,17 @@ public class TableReservationViewController implements ViewController
 
   @FXML private void onConfirm(ActionEvent actionEvent)
   {
-    //ToDo pass argument to viewModel
-    viewModel.reserveTable();
+    String id = availableTabel.getSelectionModel().getSelectedItem().getTableID();
+    if(id == null)
+    {
+      messegeLabel.setText("Please select the table to book");
+    }
+    else
+    {
+      viewModel.reserveTable(chosenDate.getValue(),
+          numberOfPeople.getSelectionModel().getSelectedItem(),
+          floor.getSelectionModel().getSelectedItem(), id);
+    }
   }
 
   @FXML private void onCancel(ActionEvent actionEvent)
