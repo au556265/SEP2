@@ -11,6 +11,10 @@ import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+
 public class SelectOrderController implements ViewController
 {
   @FXML private Label messageField;
@@ -49,6 +53,7 @@ public class SelectOrderController implements ViewController
 
   @FXML private void orderTakeawayButton(ActionEvent actionEvent)
   {
+    LocalDate currentDate = LocalDate.now();
     if(datePicker.getValue() == null)
     {
       messageField.setText("Please select a date");
@@ -56,6 +61,10 @@ public class SelectOrderController implements ViewController
     else if(selectedItem.getItems().size() == 0)
     {
       messageField.setText("Please select from the menu. You have to double click on Show Menu to see the menu. :)");
+    }
+    else if(datePicker.getValue().isBefore(currentDate) || datePicker.getValue().isEqual(currentDate))
+    {
+      messageField.setText("You cannot order in selected date");
     }
     else
     {

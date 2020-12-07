@@ -8,6 +8,8 @@ import FoodByVIA.Client.Model.MakeOrder.MakeOrderModel;
 import FoodByVIA.Client.Model.MakeOrder.MakeOrderModelImpl;
 import FoodByVIA.Client.Model.RegisterUser.RegisterUserModel;
 import FoodByVIA.Client.Model.RegisterUser.RegisterUserModelImpl;
+import FoodByVIA.Client.Model.TableReservation.TableReservationModel;
+import FoodByVIA.Client.Model.TableReservation.TableReservationModelImpl;
 
 public class ModelFactory
 {
@@ -16,6 +18,7 @@ public class ModelFactory
   private RegisterUserModel registerUserModel;
   private LoginModel loginModel;
   private MakeOrderModel makeOrderModel;
+  private TableReservationModel tableReservationModel;
 
   public ModelFactory(ClientFactory cf)
   {
@@ -56,5 +59,14 @@ public class ModelFactory
       makeOrderModel = new MakeOrderModelImpl(cf.getMakeOrderClient());
     }
     return makeOrderModel;
+  }
+
+  public TableReservationModel getTableReservationModel()
+  {
+    if(tableReservationModel == null)
+    {
+      tableReservationModel = new TableReservationModelImpl(cf.getTableReservationClient());
+    }
+    return tableReservationModel;
   }
 }

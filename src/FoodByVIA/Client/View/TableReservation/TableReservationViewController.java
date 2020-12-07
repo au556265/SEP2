@@ -7,13 +7,15 @@ import FoodByVIA.Shared.Catalogue;
 import FoodByVIA.Shared.TableReservation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+
+import java.time.LocalDate;
+import java.util.Calendar;
 
 public class TableReservationViewController implements ViewController
 {
+  @FXML private ListView<TableReservation> availableTabel;
+  @FXML private Label messegeLabel;
   @FXML private DatePicker chosenDate;
   @FXML private Label userName;
   @FXML private ComboBox<Integer> numberOfPeople;
@@ -22,36 +24,53 @@ public class TableReservationViewController implements ViewController
   private TableReservationViewModel viewModel;
   private ViewHandler vh;
 
+  @Override public void init(ViewHandler vh, ViewModelFactory vmf)
+  {
+    this.vh = vh;
+    viewModel = vmf.getTableReservationViewModel();
+
+    userName.textProperty().bindBidirectional(viewModel.getUserName());
+    numberOfPeople.getItems().addAll(viewModel.getNumberOfPeople());
+    floor.getItems().addAll(viewModel.getFloor());
+    availableTabel.setItems(viewModel.getAvailableTable());
+    messegeLabel.textProperty().bindBidirectional(viewModel.getMessage());
+  }
+
   @FXML private void onConfirm(ActionEvent actionEvent)
   {
-    //TableReservation tr = new TableReservation(numberOfPeople.getSelectionModel().getSelectedItem(),
-        //floor.getSelectionModel().getSelectedItem())
+    //ToDo pass argument to viewModel
     viewModel.reserveTable();
   }
 
   @FXML private void onCancel(ActionEvent actionEvent)
   {
-    //ToDo figure out what you want to do with cancel
+    viewModel.clear();
   }
 
   @FXML private void onSwitchToTakeaway(ActionEvent actionEvent)
   {
+    viewModel.clear();
     vh.openToSelectOrderScene();
-  }
-
-  @Override public void init(ViewHandler vh, ViewModelFactory vmf)
-  {
-    this.vh = vh;
-   // viewModel = vmf.getTableReservationViewModel();
-    userName.textProperty().bindBidirectional(viewModel.getUserName());
-    numberOfPeople.getItems().addAll(viewModel.getNumberOfPeople());
-    floor.getItems().addAll(viewModel.getFloor());
-    chosenDate.getConverter();
   }
 
   public void onLogout(ActionEvent actionEvent)
   {
     viewModel.logOut();
     vh.openToLoginView();
+  }
+
+  public void searchButton(ActionEvent actionEvent)
+  {
+    LocalDate currentDate = LocalDate.now();
+    if(chosenDate.getValue().isBefore(currentDate) || chosenDate.getValue().isEqual(currentDate))
+    {
+      messegeLabel.setText("Please choose a valid date. (You cannot book a table for today or before.)");
+    }
+    else
+    {
+      viewModel.search(chosenDate.getValue(),
+          numberOfPeople.getSelectionModel().getSelectedItem(),
+          floor.getSelectionModel().getSelectedItem());
+    }
   }
 }

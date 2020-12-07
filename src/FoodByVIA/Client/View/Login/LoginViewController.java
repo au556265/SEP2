@@ -30,8 +30,6 @@ public class LoginViewController implements ViewController
         vh.openAddMenuView();
       }
       else if(usertypeID.getSelectionModel().getSelectedItem().equalsIgnoreCase("Employee")){
-        // vh.openEmployeeView
-        System.out.println("employee view");
       }  else if(usertypeID.getSelectionModel().getSelectedItem().equalsIgnoreCase("Customer")){
         vh.openToSelectOrderScene();
       }

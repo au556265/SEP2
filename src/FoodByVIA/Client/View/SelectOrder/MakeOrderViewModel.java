@@ -54,6 +54,7 @@ public class MakeOrderViewModel
   public void addToTotalPrice(FoodItem item)
   {
     price += item.getPrice();
+    totalPrice.setValue(price);
   }
 
   public StringProperty getUser()

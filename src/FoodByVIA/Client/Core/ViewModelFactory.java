@@ -56,12 +56,12 @@ public class ViewModelFactory
     return selectOrderViewModel;
   }
 
- /* public TableReservationViewModel getTableReservationViewModel()
+  public TableReservationViewModel getTableReservationViewModel()
   {
     if(tableReservationViewModel == null)
     {
-      tableReservationViewModel = new TableReservationViewModel(mf.getMakeOrderModel());
+      tableReservationViewModel = new TableReservationViewModel(mf.getTableReservationModel());
     }
     return tableReservationViewModel;
-  }*/
+  }
 }
