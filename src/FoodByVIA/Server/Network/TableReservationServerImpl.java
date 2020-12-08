@@ -3,39 +3,41 @@ package FoodByVIA.Server.Network;
 import FoodByVIA.Server.Model.RegisterUser.RegisterUserServerModel;
 import FoodByVIA.Server.Model.TableReservation.TableReservationServerModel;
 import FoodByVIA.Shared.Network.CallBack.MessageCallBack;
+import FoodByVIA.Shared.Network.CallBack.ReserveTableCallBack;
 import FoodByVIA.Shared.Network.TableReservation.TableReservationServer;
 import FoodByVIA.Shared.TableReservation;
 
 import java.beans.PropertyChangeEvent;
+import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class TableReservationServerImpl implements TableReservationServer
 {
   private TableReservationServerModel model;
-  private MessageCallBack client;
+  private ReserveTableCallBack client;
 
-  public TableReservationServerImpl(TableReservationServerModel model, MessageCallBack client)
+  public TableReservationServerImpl(TableReservationServerModel model, ReserveTableCallBack client)
       throws RemoteException
   {
     UnicastRemoteObject.exportObject(this, 0);
     this.model = model;
     this.client = client;
   }
+
   @Override public void reserveTable(TableReservation table)
-      throws RuntimeException
   {
     model.reserveTable(table);
-    model.addPropertyChangeListener("reserveTable",this::throwMessage);
   }
 
-  @Override public void registerClient(MessageCallBack client)
-      throws RemoteException
+  @Override public void registerClient(ReserveTableCallBack client)
   {
     this.client = client;
-    model.addPropertyChangeListener("RegisterMessage",this::throwMessage);
+    model.addPropertyChangeListener("TableBookingConfirmation",this::throwMessage);
   }
+
   private void throwMessage(PropertyChangeEvent evt)
   {
     try
@@ -50,8 +52,23 @@ public class TableReservationServerImpl implements TableReservationServer
   }
 
   @Override public void search(LocalDate date, int Capacity, String floor)
-      throws RemoteException
   {
     model.search(Capacity,floor,date);
+    model.addPropertyChangeListener("AvailableTables", this::addTables);
+  }
+
+
+  private void addTables(PropertyChangeEvent evt)
+  {
+    ArrayList<TableReservation> tables = (ArrayList<TableReservation>) evt.getNewValue();
+    try
+    {
+      client.addTables(tables);
+    }
+    catch (RemoteException e)
+    {
+
+
+    }
   }
 }

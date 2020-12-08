@@ -103,7 +103,7 @@ public class TableReservationViewModel
 
   public void search(LocalDate date, int capacity, String floor)
   {
-    //TODO add a model and call a method from the model
+    model.search(date, capacity, floor);
   }
 
   public ObservableList<TableReservation> getAvailableTable()

@@ -33,7 +33,6 @@ public class TableReservationClientImpl implements TableReservationClient ,
       UnicastRemoteObject.exportObject(this,0);
       tableReservationServer = networkConnection.getServerInterface().getTableReservationServerImpl();
       tableReservationServer.registerClient(this);
-
     }
     catch (RemoteException e)
     {
@@ -43,7 +42,14 @@ public class TableReservationClientImpl implements TableReservationClient ,
 
   @Override public void reserveTable(TableReservation table)
   {
-    tableReservationServer.reserveTable(table);
+    try
+    {
+      tableReservationServer.reserveTable(table);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   @Override public void search(LocalDate date, int capacity, String floor)

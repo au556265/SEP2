@@ -97,7 +97,7 @@ public class ServerFactory implements ServerInterface
     {
       try
       {
-        tableReservationServer = new TableReservationServerImpl(modelFactory.getTableReservationServerModel(), callBackFactory.getMakeOrderCallBack());
+        tableReservationServer = new TableReservationServerImpl(modelFactory.getTableReservationServerModel(), callBackFactory.getReserveTableCallBack());
       }
       catch(RemoteException e)
       {

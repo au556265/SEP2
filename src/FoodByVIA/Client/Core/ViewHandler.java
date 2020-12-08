@@ -28,7 +28,7 @@ public class ViewHandler
   public void start()
   {
     mainStage = new Stage();
-    openToSelectOrderScene();
+    openToLoginView();
   }
 
   private Parent loadFXML(String path) throws IOException
@@ -128,7 +128,7 @@ public class ViewHandler
     {
       try
       {
-        Parent root = loadFXML("../View/MakeOrder/TableReservationView.fxml");
+        Parent root = loadFXML("../View/TableReservation/TableReservationView.fxml");
 
         tableReservationScene = new Scene(root);
       }

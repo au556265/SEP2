@@ -4,16 +4,12 @@ import FoodByVIA.Client.Core.ViewHandler;
 import FoodByVIA.Client.Core.ViewModelFactory;
 import FoodByVIA.Client.View.ViewController;
 import FoodByVIA.Shared.FoodItem;
-import FoodByVIA.Shared.Order;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
-
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 public class SelectOrderController implements ViewController
 {
