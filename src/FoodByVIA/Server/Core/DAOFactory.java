@@ -4,6 +4,8 @@ import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDAO;
 import FoodByVIA.DAO.Persistance.FoodItem.FoodItemDaoManager;
 import FoodByVIA.DAO.Persistance.Order.OrderDAO;
 import FoodByVIA.DAO.Persistance.Order.OrderDAOManager;
+import FoodByVIA.DAO.Persistance.TableReservation.TableReservationDAO;
+import FoodByVIA.DAO.Persistance.TableReservation.TableReservationDAOManager;
 import FoodByVIA.DAO.Persistance.User.UserDAO;
 import FoodByVIA.DAO.Persistance.User.UserDaoManager;
 
@@ -12,6 +14,7 @@ public class DAOFactory
   private FoodItemDAO foodItemDAO;
   private UserDAO userDAO;
   private OrderDAO orderDAO;
+  private TableReservationDAO tableReservationDAO;
 
   public FoodItemDAO getFoodItemDAO()
   {
@@ -38,5 +41,14 @@ public class DAOFactory
       orderDAO = new OrderDAOManager();
     }
     return orderDAO;
+  }
+
+  public TableReservationDAO getTableReservationDAO()
+  {
+    if (tableReservationDAO == null)
+    {
+      tableReservationDAO = new TableReservationDAOManager();
+    }
+    return tableReservationDAO;
   }
 }

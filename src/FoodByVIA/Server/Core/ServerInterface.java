@@ -15,5 +15,5 @@ public interface ServerInterface extends Remote
   RegisterUserServer getRegisterUserServerImpl() throws RemoteException;
   LoginServer getLoginServerImpl() throws RemoteException;
   MakeOrderServer getMakeOrderServerImpl() throws RemoteException;
-  TableReservationServer getTableReservationServerImpl();
+  TableReservationServer getTableReservationServerImpl()throws RemoteException;
 }

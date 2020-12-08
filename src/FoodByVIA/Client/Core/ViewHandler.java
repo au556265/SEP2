@@ -28,7 +28,7 @@ public class ViewHandler
   public void start()
   {
     mainStage = new Stage();
-    openToLoginView();
+    openToSelectOrderScene();
   }
 
   private Parent loadFXML(String path) throws IOException

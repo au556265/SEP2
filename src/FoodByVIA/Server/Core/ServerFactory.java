@@ -1,13 +1,11 @@
 package FoodByVIA.Server.Core;
 
-import FoodByVIA.Server.Network.AddMenuServerImpl;
-import FoodByVIA.Server.Network.LoginServerImpl;
-import FoodByVIA.Server.Network.MakeOrderServerImpl;
-import FoodByVIA.Server.Network.RegisterUserServerImpl;
+import FoodByVIA.Server.Network.*;
 import FoodByVIA.Shared.Network.AddMenu.AddMenuServer;
 import FoodByVIA.Shared.Network.Login.LoginServer;
 import FoodByVIA.Shared.Network.MakeOrder.MakeOrderServer;
 import FoodByVIA.Shared.Network.RegisterUser.RegisterUserServer;
+import FoodByVIA.Shared.Network.TableReservation.TableReservationServer;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -20,6 +18,7 @@ public class ServerFactory implements ServerInterface
   private MakeOrderServer makeOrderServer;
   private ServerModelFactory modelFactory;
   private ClientCallBackFactory callBackFactory;
+  private TableReservationServer tableReservationServer;
 
   public ServerFactory(ServerModelFactory modelFactory, ClientCallBackFactory callBackFactory) throws RemoteException
   {
@@ -92,6 +91,20 @@ public class ServerFactory implements ServerInterface
     return makeOrderServer;
   }
 
-
+  @Override public TableReservationServer getTableReservationServerImpl()
+  {
+    if(tableReservationServer == null)
+    {
+      try
+      {
+        tableReservationServer = new TableReservationServerImpl(modelFactory.getTableReservationServerModel(), callBackFactory.getMakeOrderCallBack());
+      }
+      catch(RemoteException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    return tableReservationServer;
+  }
 
 }

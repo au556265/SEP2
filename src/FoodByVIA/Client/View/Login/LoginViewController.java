@@ -20,6 +20,15 @@ public class LoginViewController implements ViewController
   private ViewHandler vh;
   private LoginViewModel loginViewModel;
 
+  @Override public void init(ViewHandler vh, ViewModelFactory vmf)
+  {
+    this.vh=vh;
+    loginViewModel = vmf.getLoginViewModel();
+    usernameField.textProperty().bindBidirectional(loginViewModel.getUsername());
+    passwordField.textProperty().bindBidirectional(loginViewModel.getPassword());
+    messageLabel.textProperty().bindBidirectional(loginViewModel.getMessage());
+    usertypeID.getItems().addAll(loginViewModel.getUserType());
+  }
 
   @FXML private void loginButton(ActionEvent actionEvent){
     if(loginViewModel.checkUserInput(usernameField.getText(), passwordField.getText(),
@@ -50,15 +59,7 @@ public class LoginViewController implements ViewController
     vh.openRegisterUserView();
   }
 
-  @Override public void init(ViewHandler vh, ViewModelFactory vmf)
-  {
-    this.vh=vh;
-    loginViewModel = vmf.getLoginViewModel();
-    usernameField.textProperty().bindBidirectional(loginViewModel.getUsername());
-    passwordField.textProperty().bindBidirectional(loginViewModel.getPassword());
-    messageLabel.textProperty().bindBidirectional(loginViewModel.getMessage());
-    usertypeID.getItems().addAll(loginViewModel.getUserType());
-  }
+
 
   @FXML private void onCancel(ActionEvent actionEvent)
   {
