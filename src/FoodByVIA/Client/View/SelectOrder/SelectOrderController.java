@@ -42,9 +42,15 @@ public class SelectOrderController implements ViewController
   @FXML private void addItemButton(ActionEvent actionEvent)
   {
     FoodItem foodItem = menu.getSelectionModel().getSelectedItem();
-    selectedItem.getItems().add(foodItem);
-
-    makeOrderViewModel.addToTotalPrice(foodItem);
+    if(foodItem == null)
+    {
+      messageField.setText("Please select the food item");
+    }
+    else
+    {
+      selectedItem.getItems().add(foodItem);
+      makeOrderViewModel.addToTotalPrice(foodItem);
+    }
   }
 
   @FXML private void bookTableButton(ActionEvent actionEvent)

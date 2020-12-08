@@ -22,8 +22,6 @@ public class TableReservation implements Serializable
     this.tableID=tableID;
   }
 
-public TableReservation(){ }
-
   public void setTableID(String tableID)
   {
     this.tableID = tableID;
