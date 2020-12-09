@@ -4,6 +4,7 @@ import FoodByVIA.Server.Network.*;
 import FoodByVIA.Shared.Network.AddMenu.AddMenuServer;
 import FoodByVIA.Shared.Network.Login.LoginServer;
 import FoodByVIA.Shared.Network.MakeOrder.MakeOrderServer;
+import FoodByVIA.Shared.Network.ManageOrder.ManageOrderServer;
 import FoodByVIA.Shared.Network.RegisterUser.RegisterUserServer;
 import FoodByVIA.Shared.Network.TableReservation.TableReservationServer;
 
@@ -19,6 +20,7 @@ public class ServerFactory implements ServerInterface
   private ServerModelFactory modelFactory;
   private ClientCallBackFactory callBackFactory;
   private TableReservationServer tableReservationServer;
+  private ManageOrderServer manageOrderServer;
 
   public ServerFactory(ServerModelFactory modelFactory, ClientCallBackFactory callBackFactory) throws RemoteException
   {
@@ -105,6 +107,22 @@ public class ServerFactory implements ServerInterface
       }
     }
     return tableReservationServer;
+  }
+
+  @Override public ManageOrderServer getManageOrderServerImpl()
+  {
+    if(manageOrderServer == null)
+    {
+      try
+      {
+        manageOrderServer = new ManageOrderServerImpl(modelFactory.getManageOrderServerModel(), callBackFactory.getManageOrderCallBack());
+      }
+      catch (RemoteException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    return manageOrderServer;
   }
 
 }

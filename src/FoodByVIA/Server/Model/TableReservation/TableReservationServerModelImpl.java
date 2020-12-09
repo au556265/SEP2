@@ -29,6 +29,10 @@ public class TableReservationServerModelImpl implements TableReservationServerMo
   @Override public void search(int capacity, String zone, LocalDate date)
   {
     ArrayList<TableReservation> availableTables = dao.getSelectedIsAvailableTableReservation(capacity, zone, date);
+    if(availableTables.size() == 0)
+    {
+      support.firePropertyChange("NotAvailableMessage", null, "All tables are booked");
+    }
     support.firePropertyChange("AvailableTables", null, availableTables);
   }
 

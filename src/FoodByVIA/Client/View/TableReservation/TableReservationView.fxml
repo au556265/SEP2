@@ -55,6 +55,6 @@
       <Button layoutX="478.0" layoutY="204.0" mnemonicParsing="false" onAction="#searchButton" text="Search" />
    </children>
    <cursor>
-      <Cursor fx:constant="NONE" />
+      <Cursor fx:constant="DEFAULT" />
    </cursor>
 </AnchorPane>

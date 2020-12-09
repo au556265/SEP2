@@ -3,6 +3,7 @@ package FoodByVIA.Server.Core;
 import FoodByVIA.Shared.Network.AddMenu.AddMenuServer;
 import FoodByVIA.Shared.Network.Login.LoginServer;
 import FoodByVIA.Shared.Network.MakeOrder.MakeOrderServer;
+import FoodByVIA.Shared.Network.ManageOrder.ManageOrderServer;
 import FoodByVIA.Shared.Network.RegisterUser.RegisterUserServer;
 import FoodByVIA.Shared.Network.TableReservation.TableReservationServer;
 
@@ -16,4 +17,5 @@ public interface ServerInterface extends Remote
   LoginServer getLoginServerImpl() throws RemoteException;
   MakeOrderServer getMakeOrderServerImpl() throws RemoteException;
   TableReservationServer getTableReservationServerImpl()throws RemoteException;
+  ManageOrderServer getManageOrderServerImpl();
 }

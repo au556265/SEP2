@@ -55,8 +55,21 @@ public class TableReservationServerImpl implements TableReservationServer
   {
     model.search(Capacity,floor,date);
     model.addPropertyChangeListener("AvailableTables", this::addTables);
+    model.addPropertyChangeListener("NotAvailableMessage", this::notAvailable);
   }
 
+  private void notAvailable(PropertyChangeEvent evt)
+  {
+    String notAvailableMessage = (String) evt.getNewValue();
+    try
+    {
+      client.getMessage(notAvailableMessage);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
 
   private void addTables(PropertyChangeEvent evt)
   {
@@ -67,8 +80,7 @@ public class TableReservationServerImpl implements TableReservationServer
     }
     catch (RemoteException e)
     {
-
-
+      e.printStackTrace();
     }
   }
 }

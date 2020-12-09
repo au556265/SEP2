@@ -1,4 +1,4 @@
-package FoodByVIA.Server.Model.ViewOrder;
+package FoodByVIA.Server.Model.ManageOrder;
 
 import FoodByVIA.DAO.Persistance.Order.OrderDAO;
 import FoodByVIA.Shared.Order;
@@ -7,21 +7,21 @@ import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class ViewOrderServerModelImpl implements ViewOrderServerModel
+public class ManageOrderServerModelImpl implements ManageOrderServerModel
 {
   private OrderDAO orderDAO;
   private PropertyChangeSupport support;
 
-  public ViewOrderServerModelImpl(OrderDAO orderDAO)
+  public ManageOrderServerModelImpl(OrderDAO orderDAO)
   {
     this.orderDAO = orderDAO;
     support = new PropertyChangeSupport(this);
   }
 
-  @Override public void getAllOrders(Boolean isActive, LocalDate localDate)
+  @Override public void search(boolean isActive, LocalDate date)
   {
-    ArrayList<Order> allActiveOrders = orderDAO.getAllActiveOrders(isActive,localDate);
-    support.firePropertyChange("AllOrders",null,allActiveOrders);
+    ArrayList<Order> allOrders = orderDAO.getAllActiveOrders(isActive, date);
+    support.firePropertyChange("AllOrders",null, allOrders);
   }
 
   @Override public void addPropertyChangeListener(String name,

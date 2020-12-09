@@ -38,16 +38,16 @@ public class TableReservationViewController implements ViewController
 
   @FXML private void onConfirm(ActionEvent actionEvent)
   {
-    String id = availableTabel.getSelectionModel().getSelectedItem().getTableID();
+    TableReservation id = availableTabel.getSelectionModel().getSelectedItem();
     if(id == null)
     {
-      messegeLabel.setText("Please select the table to book");
+      messegeLabel.setText("Please select the table first");
     }
     else
     {
       viewModel.reserveTable(chosenDate.getValue(),
           numberOfPeople.getSelectionModel().getSelectedItem(),
-          floor.getSelectionModel().getSelectedItem(), id);
+          floor.getSelectionModel().getSelectedItem(), id.getTableID());
     }
   }
 
@@ -74,6 +74,10 @@ public class TableReservationViewController implements ViewController
     if(chosenDate.getValue().isBefore(currentDate) || chosenDate.getValue().isEqual(currentDate))
     {
       messegeLabel.setText("Please choose a valid date. (You cannot book a table for today or before.)");
+    }
+    else if(numberOfPeople.getSelectionModel().getSelectedItem() == null || floor.getSelectionModel().getSelectedItem() == null)
+    {
+      messegeLabel.setText("Please choose the zone and number of people.");
     }
     else
     {
