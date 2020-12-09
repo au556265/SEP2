@@ -24,6 +24,40 @@ public class Order implements Serializable
     foodItems = new ArrayList<>();
   }
 
+  public Order()
+  {
+    foodItems = new ArrayList<>();
+  }
+
+  public double getTotalPrice()
+  {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(double totalPrice)
+  {
+    this.totalPrice = totalPrice;
+  }
+
+  public void setActive(boolean active)
+  {
+    this.active = active;
+  }
+
+  public void setCustomer(String customer)
+  {
+    this.customer = customer;
+  }
+
+  public void setFoodItems(List<FoodItem> foodItems)
+  {
+    this.foodItems = foodItems;
+  }
+
+  public void setOrderDate(LocalDate orderDate)
+  {
+    this.orderDate = orderDate;
+  }
 
   public LocalDate getDate(){
     return orderDate;

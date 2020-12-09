@@ -4,6 +4,7 @@ import FoodByVIA.Shared.FoodItem;
 import FoodByVIA.Shared.Order;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -57,6 +58,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
 
   }
 
+
   private void createOrderFood(FoodItem foodItem, int ordernumber, int amount){
     try(java.sql.Connection connection = getConnection())
     {
@@ -73,39 +75,67 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
     }
   }
 
-/*
-
-  @Override public Order getOrder(int ordernumber)
+  // jeg skal også have ja
+  @Override public ArrayList<Order> getAllActiveOrders( Boolean isActive, LocalDate localDate1)
   {
-    try(java.sql.Connection connection = getConnection())
+    ArrayList<Order> orders = new ArrayList<>();
+
+    try (java.sql.Connection connection = getConnection())
     {
-      Order order = new Order(null,0.0,false,null);
-      // make a join of the tables order and order_fooditem where ordernumber matches the ordernumber thats passed here.
-      // create a new object order
+      PreparedStatement preparedStatement = connection.prepareStatement(
+          "select activeorder, orders.ordernumber, username, dateto, fooditem.fooditemname, amount, fooditemprice, "
+              + "fooditemdescription from orders, orders_FoodItems, Fooditem WHERE "
+              + "orders.ordernumber = orders_FoodItems.ordernumber and Fooditem.fooditemname = orders_fooditems.fooditemname and activeOrder= ? " + "and dateTo = ?;");
+      preparedStatement.setBoolean(1, isActive);
+      preparedStatement.setObject(2, localDate1);
 
-      return order;
-    }
-    catch(SQLException throwables){
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while (resultSet.next())
+      {
+        boolean found = false;
+        int ordernr = resultSet.getInt("ordernumber");
+
+        for (int i = 0; i < orders.size(); i++)
+        {
+
+          if (orders.get(i).getOrdernumber() == ordernr)
+          {
+            FoodItem foodItem = new FoodItem(resultSet.getString("fooditemname"),
+                resultSet.getDouble("fooditemprice"), resultSet.getString("fooditemdescription"));
+            orders.get(i).addFoodItem(foodItem);
+            orders.get(i).setTotalPrice(orders.get(i).getTotalPrice() + foodItem.getPrice());
+            found = true;
+            break;
+
+          }
+        }
+
+        if (!found)
+        {
+
+          Order order = new Order();
+          order.setOrderNumber(resultSet.getInt("ordernumber"));
+          order.setActive(resultSet.getBoolean("activeOrder"));
+          order.setCustomer(resultSet.getString("username"));
+
+          FoodItem foodItem = new FoodItem(resultSet.getString("fooditemname"),
+              resultSet.getDouble("fooditemprice"), resultSet.getString("fooditemdescription"));
+
+          order.addFoodItem(foodItem);
+          order.setTotalPrice(order.getTotalPrice() + foodItem.getPrice());
+
+          orders.add(order);
+        }
+      }
 
     }
-    return null;
+    catch (SQLException throwables)
+    {
+      throwables.printStackTrace();
+    }
+    return orders;
   }
 
-  @Override public ArrayList<Order> getAllActiveOrders()
-  {
-    try(java.sql.Connection connection = getConnection())
-    {
-      // make a join of the tables order and order_fooditem where active is true
-      // itterate through resultset, create order from every resultset row.
-      // add order into arraylist and return arraylist.
 
-    }
-    catch(SQLException throwables){
-
-    }
-
-    return null;
-  }
-
- */
 }

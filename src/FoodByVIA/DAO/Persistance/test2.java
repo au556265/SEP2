@@ -17,7 +17,6 @@ public class test2
 {
   public static void main(String[] args)
   {
-
     FoodItemDAO foodItemDAO = new FoodItemDaoManager();
     System.out.println(foodItemDAO.getAllFoodItems());
 
@@ -27,6 +26,6 @@ public class test2
     System.out.println(userDAO.checkLogin("Chris", "12345", "customer"));
     System.out.println(userDAO.checkLogin("Chris", "1234", "employee"));
 
-
   }
 }
+

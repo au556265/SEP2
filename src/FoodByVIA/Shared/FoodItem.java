@@ -13,6 +13,7 @@ public class FoodItem implements Serializable
     this.name = name;
     this.price = price;
     this.description = description;
+
   }
 
   public void setPrice(double price)
