@@ -75,7 +75,6 @@ public class FoodItemDaoManager extends FoodByVIA.DAO.Persistance.Connection
     {
       e.printStackTrace();
     }
-
   }
 
   @Override public ArrayList<FoodItem> getAllFoodItems()

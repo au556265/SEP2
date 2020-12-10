@@ -9,6 +9,6 @@ public interface OrderDAO
 {
   void createOrder(Order order);
   ArrayList<Order> getAllActiveOrders(Boolean isActive, LocalDate localDate1);
-
+  void completeOrder(Order order);
 
 }

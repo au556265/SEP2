@@ -24,6 +24,12 @@ public class ManageOrderServerModelImpl implements ManageOrderServerModel
     support.firePropertyChange("AllOrders",null, allOrders);
   }
 
+  @Override public void completeOrder(Order order)
+  {
+    orderDAO.completeOrder(order);
+    support.firePropertyChange("CompleteOrder", null, "Order marked as completed");
+  }
+
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
   {

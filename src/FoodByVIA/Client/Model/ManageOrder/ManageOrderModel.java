@@ -10,4 +10,5 @@ public interface ManageOrderModel extends PropertyChangeSubject
 {
   void search(boolean isActive, LocalDate date);
 
+  void completeOrder(Order order);
 }

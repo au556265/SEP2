@@ -10,4 +10,5 @@ public interface ManageOrderClient extends PropertyChangeSubject
   void startClient();
   void search(boolean isActive, LocalDate date);
 
+  void completeOrder(Order order);
 }

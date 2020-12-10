@@ -24,11 +24,6 @@ public class ManageOrderServerImpl implements ManageOrderServer
     this.client = client;
   }
 
- /* @Override public void getAllOrders(Boolean isActive,LocalDate localDate)
-  {
-    model.getAllOrders(isActive,localDate);
-  }*/
-
   @Override public void registerClient(ManageOrderCallBack client)
   {
     this.client = client;
@@ -37,14 +32,33 @@ public class ManageOrderServerImpl implements ManageOrderServer
   @Override public void search(boolean isActive, LocalDate date)
   {
     model.search(isActive, date);
-    model.addPropertyChangeListener("RequiredOrder", this::addOrders);
+    model.addPropertyChangeListener("AllOrders", this::addOrders);
+  }
+
+  @Override public void completeOrder(Order order)
+  {
+    model.completeOrder(order);
+    model.addPropertyChangeListener("CompleteOrder", this::complete);
+  }
+
+  private void complete(PropertyChangeEvent evt)
+  {
+    try
+    {
+      String message = (String) evt.getNewValue();
+      client.getMessage(message);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   private void addOrders(PropertyChangeEvent evt)
   {
-    ArrayList<Order> orders = (ArrayList<Order>) evt.getNewValue();
     try
     {
+      ArrayList<Order> orders = (ArrayList<Order>) evt.getNewValue();
       client.addOrders(orders);
     }
     catch (RemoteException e)

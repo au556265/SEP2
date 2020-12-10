@@ -6,7 +6,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-public interface ManageOrderCallBack extends Remote
+public interface ManageOrderCallBack extends Remote, MessageCallBack
 {
   void addOrders(ArrayList<Order> orders) throws RemoteException;
 }

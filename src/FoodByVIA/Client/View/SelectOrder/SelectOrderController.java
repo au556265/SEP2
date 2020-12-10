@@ -30,7 +30,7 @@ public class SelectOrderController implements ViewController
 
     StringConverter<Number> converter = new NumberStringConverter();
     messageField.textProperty().bindBidirectional(makeOrderViewModel.getMessage());
-    username.textProperty().bindBidirectional(makeOrderViewModel.getUser());
+    username.textProperty().bind(makeOrderViewModel.getUser());
     menu.setItems(makeOrderViewModel.getMenu());
     totalPrice.textProperty().bindBidirectional(makeOrderViewModel.getTotalPrice(), converter);
   }

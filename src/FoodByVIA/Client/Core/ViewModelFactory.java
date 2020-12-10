@@ -1,6 +1,5 @@
 package FoodByVIA.Client.Core;
 
-import FoodByVIA.Client.Model.MakeOrder.MakeOrderModel;
 import FoodByVIA.Client.View.Login.LoginViewModel;
 import FoodByVIA.Client.View.ManageOrder.ManageOrderViewModel;
 import FoodByVIA.Client.View.RegisterUser.RegisterUserViewModel;
@@ -67,9 +66,9 @@ public class ViewModelFactory
   }
   public ManageOrderViewModel getManageOrderViewModel()
   {
-    if (manageOrderViewModel == null)
+    if(manageOrderViewModel == null)
     {
-      new ManageOrderViewModel(mf.getManageOrderModel());
+      manageOrderViewModel = new ManageOrderViewModel(mf.getManageOrderModel());
     }
     return manageOrderViewModel;
   }

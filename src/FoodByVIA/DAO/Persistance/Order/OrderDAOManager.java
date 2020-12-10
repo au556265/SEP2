@@ -128,7 +128,6 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
           orders.add(order);
         }
       }
-
     }
     catch (SQLException throwables)
     {
@@ -137,5 +136,18 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
     return orders;
   }
 
-
+ @Override public void completeOrder(Order order)
+  {
+    try(java.sql.Connection connection = getConnection())
+    {
+      PreparedStatement preparedStatement =
+          connection.prepareStatement("update orders set activeorder = false where ordernumber = ?;");
+      preparedStatement.setInt(1, order.getOrdernumber());
+      preparedStatement.executeUpdate();
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+  }
 }

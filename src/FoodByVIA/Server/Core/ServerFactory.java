@@ -8,6 +8,7 @@ import FoodByVIA.Shared.Network.ManageOrder.ManageOrderServer;
 import FoodByVIA.Shared.Network.RegisterUser.RegisterUserServer;
 import FoodByVIA.Shared.Network.TableReservation.TableReservationServer;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -22,7 +23,8 @@ public class ServerFactory implements ServerInterface
   private TableReservationServer tableReservationServer;
   private ManageOrderServer manageOrderServer;
 
-  public ServerFactory(ServerModelFactory modelFactory, ClientCallBackFactory callBackFactory) throws RemoteException
+  public ServerFactory(ServerModelFactory modelFactory, ClientCallBackFactory callBackFactory)
+      throws RemoteException
   {
     UnicastRemoteObject.exportObject(this, 0);
     this.modelFactory = modelFactory;

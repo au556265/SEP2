@@ -13,5 +13,5 @@ public interface ManageOrderServer extends Remote
 {
   void registerClient(ManageOrderCallBack client) throws RemoteException;
   void search(boolean isActive, LocalDate date) throws RemoteException;
-
+  void completeOrder(Order order) throws RemoteException;
 }

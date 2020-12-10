@@ -17,6 +17,7 @@ public class LoginViewController implements ViewController
   @FXML private ComboBox<String> usertypeID;
   @FXML private TextField passwordField;
   @FXML private TextField usernameField;
+
   private ViewHandler vh;
   private LoginViewModel loginViewModel;
 
@@ -38,11 +39,16 @@ public class LoginViewController implements ViewController
       {
         vh.openAddMenuView();
       }
-      else if(usertypeID.getSelectionModel().getSelectedItem().equalsIgnoreCase("Employee")){
-      }  else if(usertypeID.getSelectionModel().getSelectedItem().equalsIgnoreCase("Customer")){
+      else if(usertypeID.getSelectionModel().getSelectedItem().equalsIgnoreCase("Employee"))
+      {
+        vh.openToManageOrderView();
+      }
+      else if(usertypeID.getSelectionModel().getSelectedItem().equalsIgnoreCase("Customer"))
+      {
         vh.openToSelectOrderScene();
       }
-      else{
+      else
+        {
         System.out.println("invalid user, please choose a usertype");
         messageLabel.setText("Invalid user");
       }
@@ -58,8 +64,6 @@ public class LoginViewController implements ViewController
   {
     vh.openRegisterUserView();
   }
-
-
 
   @FXML private void onCancel(ActionEvent actionEvent)
   {

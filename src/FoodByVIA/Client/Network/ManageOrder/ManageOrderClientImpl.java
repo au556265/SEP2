@@ -50,7 +50,7 @@ public class ManageOrderClientImpl implements ManageOrderClient,
     }
   }
 
-  @Override public void search(boolean isActive, LocalDate date)
+    @Override public void search(boolean isActive, LocalDate date)
   {
     try
     {
@@ -62,6 +62,17 @@ public class ManageOrderClientImpl implements ManageOrderClient,
     }
   }
 
+  @Override public void completeOrder(Order order)
+  {
+    try
+    {
+      server.completeOrder(order);
+    }
+    catch (RemoteException e)
+    {
+      e.printStackTrace();
+    }
+  }
 
   @Override public void addPropertyChangeListener(String name,
       PropertyChangeListener listener)
@@ -78,5 +89,10 @@ public class ManageOrderClientImpl implements ManageOrderClient,
   @Override public void addOrders(ArrayList<Order> orders)
   {
     support.firePropertyChange("RequiredOrder", null, orders);
+  }
+
+  @Override public void getMessage(String message)
+  {
+    support.firePropertyChange("CompleteOrder", null, message);
   }
 }
