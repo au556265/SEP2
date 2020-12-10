@@ -6,6 +6,8 @@ import FoodByVIA.Client.Network.Login.LoginClient;
 import FoodByVIA.Client.Network.Login.LoginClientImpl;
 import FoodByVIA.Client.Network.MakeOrder.MakeOrderClient;
 import FoodByVIA.Client.Network.MakeOrder.MakeOrderClientImpl;
+import FoodByVIA.Client.Network.ManageOrder.ManageOrderClient;
+import FoodByVIA.Client.Network.ManageOrder.ManageOrderClientImpl;
 import FoodByVIA.Client.Network.RegisterUser.RegisterUserClient;
 import FoodByVIA.Client.Network.RegisterUser.RegisterUserClientImpl;
 import FoodByVIA.Client.Network.TableReservation.TableReservationClient;
@@ -18,7 +20,7 @@ public class ClientFactory
   private LoginClient loginClient;
   private MakeOrderClient makeOrderClient;
   private TableReservationClient tableReservationClient;
-
+  private ManageOrderClient manageOrderClient;
   public AddMenuClient getAddMenuClient()
   {
     if(addMenuclient == null)
@@ -62,5 +64,13 @@ public class ClientFactory
       tableReservationClient = new TableReservationClientImpl();
     }
     return tableReservationClient;
+  }
+  public ManageOrderClient getManageOrderClient()
+  {
+    if(manageOrderClient == null)
+    {
+      manageOrderClient = new ManageOrderClientImpl();
+    }
+    return manageOrderClient;
   }
 }

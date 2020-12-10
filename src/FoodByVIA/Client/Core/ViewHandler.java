@@ -15,6 +15,7 @@ public class ViewHandler
   private Scene loginScene;
   private Scene selectOrderScene;
   private Scene tableReservationScene;
+  private Scene manageOrderScene;
 
   private Stage mainStage;
 
@@ -139,6 +140,25 @@ public class ViewHandler
       mainStage.setTitle("Order");
     }
     mainStage.setScene(tableReservationScene);
+    mainStage.show();
+  }
+  public void openToManageOrderView()
+  {
+    if(manageOrderScene == null)
+    {
+      try
+      {
+        Parent root = loadFXML("../View/ManageOrder/ManageOrderView.fxml");
+
+        manageOrderScene = new Scene(root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+      mainStage.setTitle("Order");
+    }
+    mainStage.setScene(manageOrderScene);
     mainStage.show();
   }
 

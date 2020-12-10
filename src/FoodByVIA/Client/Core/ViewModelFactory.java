@@ -2,6 +2,7 @@ package FoodByVIA.Client.Core;
 
 import FoodByVIA.Client.Model.MakeOrder.MakeOrderModel;
 import FoodByVIA.Client.View.Login.LoginViewModel;
+import FoodByVIA.Client.View.ManageOrder.ManageOrderViewModel;
 import FoodByVIA.Client.View.RegisterUser.RegisterUserViewModel;
 import FoodByVIA.Client.View.SelectOrder.MakeOrderViewModel;
 import FoodByVIA.Client.View.TableReservation.TableReservationViewModel;
@@ -14,7 +15,7 @@ public class ViewModelFactory
   private LoginViewModel loginViewModel;
   private MakeOrderViewModel selectOrderViewModel;
   private TableReservationViewModel tableReservationViewModel;
-
+  private ManageOrderViewModel manageOrderViewModel;
   private ModelFactory mf;
 
   public ViewModelFactory(ModelFactory mf)
@@ -63,5 +64,13 @@ public class ViewModelFactory
       tableReservationViewModel = new TableReservationViewModel(mf.getTableReservationModel());
     }
     return tableReservationViewModel;
+  }
+  public ManageOrderViewModel getManageOrderViewModel()
+  {
+    if (manageOrderViewModel == null)
+    {
+      new ManageOrderViewModel(mf.getManageOrderModel());
+    }
+    return manageOrderViewModel;
   }
 }

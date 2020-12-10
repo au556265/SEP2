@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="670.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FoodByVIA.Client.View.ManageOrder.ManageOrderViewController">
+
+    <children>
+        <Pane prefHeight="671.0" prefWidth="194.0" style="-fx-background-color: #333333;">
+            <children>
+                <Separator layoutX="-3.0" layoutY="59.0" prefWidth="200.0" />
+                <Label alignment="CENTER" layoutY="11.0" prefHeight="39.0" prefWidth="194.0" text="Menu" textFill="WHITE">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <Button layoutX="46.0" layoutY="625.0" mnemonicParsing="false" onAction="#onLogout" prefHeight="25.0" prefWidth="102.0" text="Logout" />
+            </children>
+        </Pane>
+        <Separator layoutX="393.0" layoutY="106.0" prefHeight="3.0" prefWidth="242.0" style="-fx-background-color: #333333;" />
+        <Label fx:id="userName" layoutX="675.0" layoutY="1.0" prefHeight="26.0" prefWidth="160.0" textFill="#27788f" />
+        <Label fx:id="messegeLabel" layoutX="200.0" layoutY="599.0" prefHeight="39.0" prefWidth="626.0" textFill="RED">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+    </children>
+    <cursor>
+        <Cursor fx:constant="DEFAULT" />
+    </cursor>
+</AnchorPane>
