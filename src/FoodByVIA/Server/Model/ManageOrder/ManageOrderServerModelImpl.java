@@ -11,17 +11,35 @@ public class ManageOrderServerModelImpl implements ManageOrderServerModel
 {
   private OrderDAO orderDAO;
   private PropertyChangeSupport support;
+  private LocalDate date;
 
   public ManageOrderServerModelImpl(OrderDAO orderDAO)
   {
     this.orderDAO = orderDAO;
+    this.date = LocalDate.now();
     support = new PropertyChangeSupport(this);
+    ArrayList<Order> allOrders = orderDAO.getAllActiveOrders(true, date);
+    if(allOrders.size() == 0)
+    {
+      support.firePropertyChange("ViewOrderMessage", null, "There is no order");
+    }
+    else
+    {
+      support.firePropertyChange("CurrentOrder", null, allOrders);
+    }
   }
 
   @Override public void search(boolean isActive, LocalDate date)
   {
     ArrayList<Order> allOrders = orderDAO.getAllActiveOrders(isActive, date);
-    support.firePropertyChange("AllOrders",null, allOrders);
+    if(allOrders.size() == 0)
+    {
+      support.firePropertyChange("ViewOrderMessage", null, "There is no order");
+    }
+    else
+    {
+      support.firePropertyChange("AllOrders", null, allOrders);
+    }
   }
 
   @Override public void completeOrder(Order order)

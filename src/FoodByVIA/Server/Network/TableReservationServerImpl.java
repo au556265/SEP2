@@ -25,6 +25,9 @@ public class TableReservationServerImpl implements TableReservationServer
     UnicastRemoteObject.exportObject(this, 0);
     this.model = model;
     this.client = client;
+    model.addPropertyChangeListener("AvailableTables", this::addTables);
+    model.addPropertyChangeListener("NotAvailableMessage", this::notAvailable);
+    model.addPropertyChangeListener("TableBookingConfirmation",this::throwMessage);
   }
 
   @Override public void reserveTable(TableReservation table)
@@ -35,7 +38,6 @@ public class TableReservationServerImpl implements TableReservationServer
   @Override public void registerClient(ReserveTableCallBack client)
   {
     this.client = client;
-    model.addPropertyChangeListener("TableBookingConfirmation",this::throwMessage);
   }
 
   private void throwMessage(PropertyChangeEvent evt)
@@ -54,8 +56,6 @@ public class TableReservationServerImpl implements TableReservationServer
   @Override public void search(LocalDate date, int Capacity, String floor)
   {
     model.search(Capacity,floor,date);
-    model.addPropertyChangeListener("AvailableTables", this::addTables);
-    model.addPropertyChangeListener("NotAvailableMessage", this::notAvailable);
   }
 
   private void notAvailable(PropertyChangeEvent evt)

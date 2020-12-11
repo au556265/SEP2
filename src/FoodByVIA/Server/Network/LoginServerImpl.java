@@ -18,12 +18,12 @@ public class LoginServerImpl implements LoginServer
     UnicastRemoteObject.exportObject(this, 0);
     this.model = model;
     this.client = client;
+    model.addPropertyChangeListener("LoginMessage", this::throwMessage);
   }
 
   @Override public void registerClient(MessageCallBack client)
   {
     this.client = client;
-    model.addPropertyChangeListener("LoginMessage", this::throwMessage);
   }
 
   private void throwMessage(PropertyChangeEvent evt)

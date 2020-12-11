@@ -133,6 +133,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
     {
       throwables.printStackTrace();
     }
+    System.out.println(orders.size());
     return orders;
   }
 

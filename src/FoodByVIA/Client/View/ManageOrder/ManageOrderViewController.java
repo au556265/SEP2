@@ -35,11 +35,14 @@ public class ManageOrderViewController implements ViewController
   @FXML private void onLogout(ActionEvent actionEvent)
   {
     viewModel.logout();
+    viewModel.clear();
+    messegeLabel.setText("");
+    date.setValue(null);
+    vh.openToLoginView();
   }
 
   @FXML private void onSearch(ActionEvent actionEvent)
   {
-    viewModel.clear();
     if(date.getValue() != null)
     {
       if (isActive.isSelected())
@@ -59,6 +62,11 @@ public class ManageOrderViewController implements ViewController
 
   @FXML private void onCompleteOrder(ActionEvent actionEvent)
   {
+    if(allOrders.getSelectionModel().getSelectedItem() == null)
+    {
+      messegeLabel.setText("Please select the item");
+    }
+    else
     viewModel.completeOrder(allOrders.getSelectionModel().getSelectedItem());
   }
 }

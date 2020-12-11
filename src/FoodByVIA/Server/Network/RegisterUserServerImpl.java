@@ -21,12 +21,12 @@ public class RegisterUserServerImpl implements RegisterUserServer
     UnicastRemoteObject.exportObject(this, 0);
     this.model = model;
     this.client = client;
+    model.addPropertyChangeListener("RegisterMessage", this::throwMessage);
   }
 
   @Override public void registerClient(MessageCallBack client)
   {
     this.client = client;
-    model.addPropertyChangeListener("RegisterMessage", this::throwMessage);
   }
 
   private void throwMessage(PropertyChangeEvent evt)

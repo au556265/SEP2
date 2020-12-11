@@ -22,6 +22,10 @@ public class ManageOrderServerImpl implements ManageOrderServer
     UnicastRemoteObject.exportObject(this, 0);
     this.model = model;
     this.client = client;
+    model.addPropertyChangeListener("AllOrders", this::addOrders);
+    model.addPropertyChangeListener("CompleteOrder", this::complete);
+    model.addPropertyChangeListener("CurrentOrder", this::addOrders);
+    model.addPropertyChangeListener("ViewOrderMessage", this::complete);
   }
 
   @Override public void registerClient(ManageOrderCallBack client)
@@ -32,13 +36,11 @@ public class ManageOrderServerImpl implements ManageOrderServer
   @Override public void search(boolean isActive, LocalDate date)
   {
     model.search(isActive, date);
-    model.addPropertyChangeListener("AllOrders", this::addOrders);
   }
 
   @Override public void completeOrder(Order order)
   {
     model.completeOrder(order);
-    model.addPropertyChangeListener("CompleteOrder", this::complete);
   }
 
   private void complete(PropertyChangeEvent evt)
@@ -59,6 +61,7 @@ public class ManageOrderServerImpl implements ManageOrderServer
     try
     {
       ArrayList<Order> orders = (ArrayList<Order>) evt.getNewValue();
+
       client.addOrders(orders);
     }
     catch (RemoteException e)

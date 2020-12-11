@@ -24,12 +24,13 @@ public class MakeOrderServerImpl implements MakeOrderServer
     UnicastRemoteObject.exportObject(this, 0);
     this.client = client;
     this.model = model;
+    model.addPropertyChangeListener("OrderNumber", this::throwMessage);
+    model.addPropertyChangeListener("FoodItems", this::addItem);
   }
 
   @Override public void registerClient(MakeOrderCallBack client)
   {
     this.client = client;
-    model.addPropertyChangeListener("OrderNumber", this::throwMessage);
   }
 
   private void addItem(PropertyChangeEvent evt)
@@ -66,6 +67,6 @@ public class MakeOrderServerImpl implements MakeOrderServer
   @Override public void showMenu()
   {
     model.showMenu();
-    model.addPropertyChangeListener("FoodItems", this::addItem);
+
   }
 }

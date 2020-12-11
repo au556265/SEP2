@@ -52,7 +52,13 @@ public class ManageOrderViewModel
   private void addOrders(PropertyChangeEvent evt)
   {
     ArrayList<Order> order = (ArrayList<Order>) evt.getNewValue();
-    Platform.runLater(() -> orders.addAll(order));
+
+    Platform.runLater(() ->
+        {
+          clear();
+          orders.addAll(order);
+        }
+    );
   }
 
   public ObservableList<Order> getOrders()
@@ -78,11 +84,13 @@ public class ManageOrderViewModel
 
   public void clear()
   {
-    orders.removeAll();
+    orders.clear();
   }
 
   public void search(boolean isActive, LocalDate date)
   {
+    message.set("");
+    clear();
     model.search(isActive, date);
   }
 

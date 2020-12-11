@@ -20,12 +20,12 @@ public class AddMenuServerImpl implements AddMenuServer
     UnicastRemoteObject.exportObject(this, 0);
     this.client = client;
     this.model = model;
+    model.addPropertyChangeListener("AddMenuMessage", this::throwMessage);
   }
 
   @Override public void registerClient(MessageCallBack client)
   {
     this.client = client;
-    model.addPropertyChangeListener("AddMenuMessage", this::throwMessage);
   }
 
   @Override public void addFoodItem(FoodItem item)
@@ -42,7 +42,7 @@ public class AddMenuServerImpl implements AddMenuServer
     }
     catch (RemoteException e)
     {
-      throw new RuntimeException("Can't pass message from serverimpl");
+      throw new RuntimeException("Can't pass message from serverImpl");
     }
   }
 }
