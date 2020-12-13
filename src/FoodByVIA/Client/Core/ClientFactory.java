@@ -21,6 +21,7 @@ public class ClientFactory
   private MakeOrderClient makeOrderClient;
   private TableReservationClient tableReservationClient;
   private ManageOrderClient manageOrderClient;
+
   public AddMenuClient getAddMenuClient()
   {
     if(addMenuclient == null)
@@ -65,6 +66,7 @@ public class ClientFactory
     }
     return tableReservationClient;
   }
+
   public ManageOrderClient getManageOrderClient()
   {
     if(manageOrderClient == null)

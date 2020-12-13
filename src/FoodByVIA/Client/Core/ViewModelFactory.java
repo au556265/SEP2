@@ -64,6 +64,7 @@ public class ViewModelFactory
     }
     return tableReservationViewModel;
   }
+
   public ManageOrderViewModel getManageOrderViewModel()
   {
     if(manageOrderViewModel == null)

@@ -63,7 +63,7 @@ public class SelectOrderController implements ViewController
     }
     else if(selectedItem.getItems().size() == 0)
     {
-      messageField.setText("Please select from the menu. You have to double click on Show Menu to see the menu. :)");
+      messageField.setText("Please select from the menu.");
     }
     else if(datePicker.getValue().isBefore(currentDate) || datePicker.getValue().isEqual(currentDate))
     {
@@ -84,5 +84,19 @@ public class SelectOrderController implements ViewController
   @FXML private void onShowMenu(ActionEvent actionEvent)
   {
     makeOrderViewModel.showMenu();
+  }
+
+  @FXML private void onBack(ActionEvent actionEvent)
+  {
+    String usertype = makeOrderViewModel.getCurrentUser().getUserType();
+    System.out.println(usertype);
+    if(usertype.equalsIgnoreCase("Employee") || usertype.equalsIgnoreCase("Administrator"))
+    {
+      vh.openToManageOrderView();
+    }
+    else
+    {
+      vh.openToLoginView();
+    }
   }
 }

@@ -20,6 +20,7 @@ public class MakeOrderViewModel
   private Double price;
 
   private Catalogue catalogue;
+  private User currentUser;
 
   private MakeOrderModel makeOrderModel;
   private StringProperty message;
@@ -36,7 +37,8 @@ public class MakeOrderViewModel
     makeOrderModel.addPropertyChangeListener("OrderNumber", this::addMessage);
 
     catalogue = Catalogue.getInstance();
-    user.setValue(catalogue.getCurrentUser().getUsername());
+    currentUser = catalogue.getCurrentUser();
+    user.setValue(currentUser.getUsername());
   }
 
   private void addMessage(PropertyChangeEvent evt)
@@ -89,7 +91,13 @@ public class MakeOrderViewModel
 
   public void logout()
   {
-    catalogue.removeUser(catalogue.getCurrentUser());
+    catalogue.removeUser(currentUser);
+    user.setValue("");
+  }
+
+  public User getCurrentUser()
+  {
+    return currentUser;
   }
 
   public void showMenu()

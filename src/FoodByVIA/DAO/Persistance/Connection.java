@@ -17,7 +17,6 @@ public abstract class Connection
     }
   }
 
-  // remember to change the localhot to your own and the password
   public java.sql.Connection getConnection() throws SQLException
   {
     return DriverManager.getConnection(

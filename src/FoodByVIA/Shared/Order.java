@@ -80,11 +80,9 @@ public class Order implements Serializable
     return active;
   }
 
-
-
   @Override public String toString()
   {
-    return customer + " " + orderNumber + " " + foodItems + " " + totalPrice  + " " + active;
+    return customer + " " + orderNumber + " " + foodItems + " " + totalPrice;
     // add is active and date
   }
 

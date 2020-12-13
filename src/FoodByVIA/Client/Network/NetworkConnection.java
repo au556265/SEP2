@@ -13,7 +13,6 @@ public class NetworkConnection
   private static NetworkConnection instance;
 
   private NetworkConnection(){
-
   }
 
   public static NetworkConnection getInstance()

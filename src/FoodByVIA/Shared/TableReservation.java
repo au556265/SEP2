@@ -24,7 +24,6 @@ public class TableReservation implements Serializable
 
   public TableReservation()
   {
-
   }
 
   public void setTableID(String tableID)

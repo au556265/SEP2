@@ -16,6 +16,7 @@ import FoodByVIA.Client.Model.TableReservation.TableReservationModelImpl;
 public class ModelFactory
 {
   private final ClientFactory cf;
+
   private AddMenuModel addMenuModel;
   private RegisterUserModel registerUserModel;
   private LoginModel loginModel;
@@ -72,6 +73,7 @@ public class ModelFactory
     }
     return tableReservationModel;
   }
+
   public ManageOrderModel getManageOrderModel()
   {
     if (manageOrderModel== null)

@@ -4,6 +4,7 @@ import FoodByVIA.Client.Core.ViewHandler;
 import FoodByVIA.Client.Core.ViewModelFactory;
 import FoodByVIA.Client.View.ViewController;
 import FoodByVIA.Shared.Order;
+import com.sun.javafx.beans.IDProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -45,14 +46,7 @@ public class ManageOrderViewController implements ViewController
   {
     if(date.getValue() != null)
     {
-      if (isActive.isSelected())
-      {
-        viewModel.search(true, date.getValue());
-      }
-      else
-      {
-        viewModel.search(false, date.getValue());
-      }
+      viewModel.search(isActive.isSelected(), date.getValue());
     }
     else
     {
@@ -68,5 +62,10 @@ public class ManageOrderViewController implements ViewController
     }
     else
     viewModel.completeOrder(allOrders.getSelectionModel().getSelectedItem());
+  }
+
+  @FXML private void onMakeOrder(ActionEvent actionEvent)
+  {
+    vh.openToSelectOrderScene();
   }
 }

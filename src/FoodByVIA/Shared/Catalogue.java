@@ -1,27 +1,39 @@
 package FoodByVIA.Shared;
 
 import java.io.Serializable;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Catalogue implements Serializable
 {
   private static Catalogue instance;
   private User currentUser;
+  private static Lock lock = new ReentrantLock();
 
-  private Catalogue()
-  {
+  private Catalogue() {
   }
 
-  public static synchronized Catalogue getInstance()
+  public static Catalogue getInstance()
   {
     if (instance == null)
     {
-      instance = new Catalogue();
+      synchronized (lock)
+      {
+        if(instance == null)
+        {
+          instance = new Catalogue();
+        }
+      }
     }
     return instance;
   }
 
   public void saveCurrentUser(User user)
   {
+    if(currentUser != null)
+    {
+      currentUser = null;
+    }
     this.currentUser = user;
   }
 
@@ -32,6 +44,9 @@ public class Catalogue implements Serializable
 
   public void removeUser(User user)
   {
-    this.currentUser = null;
+    if(currentUser == user)
+    {
+      currentUser = null;
+    }
   }
 }

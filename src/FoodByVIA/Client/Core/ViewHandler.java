@@ -161,6 +161,4 @@ public class ViewHandler
     mainStage.setScene(manageOrderScene);
     mainStage.show();
   }
-
-
 }

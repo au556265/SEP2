@@ -25,6 +25,7 @@ public class ManageOrderViewModel
   private StringProperty message;
 
   private Catalogue catalogue;
+  private User user;
 
   private ManageOrderModel model;
 
@@ -37,7 +38,8 @@ public class ManageOrderViewModel
     message = new SimpleStringProperty();
 
     catalogue = Catalogue.getInstance();
-    username.setValue(catalogue.getCurrentUser().getUsername());
+    user = catalogue.getCurrentUser();
+    username.setValue(user.getUsername());
 
     model.addPropertyChangeListener("RequiredOrder", this::addOrders);
     model.addPropertyChangeListener("CompleteOrder", this::completed);
@@ -78,7 +80,8 @@ public class ManageOrderViewModel
 
   public void logout()
   {
-    catalogue.removeUser(catalogue.getCurrentUser());
+    catalogue.removeUser(user);
+    username.setValue("");
     clear();
   }
 
