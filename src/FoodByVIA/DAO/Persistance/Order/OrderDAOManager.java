@@ -75,7 +75,6 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
     }
   }
 
-  // jeg skal også have ja
   @Override public ArrayList<Order> getAllActiveOrders( Boolean isActive, LocalDate localDate1)
   {
     ArrayList<Order> orders = new ArrayList<>();
