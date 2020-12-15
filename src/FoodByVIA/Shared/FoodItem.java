@@ -38,6 +38,6 @@ public class FoodItem implements Serializable
 
   public String toString()
   {
-    return name + " " + price + " " + description;
+    return name + "  " + price + "kr";
   }
 }

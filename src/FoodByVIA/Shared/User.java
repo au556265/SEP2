@@ -74,6 +74,6 @@ public class User implements Serializable
 
   public String toString()
   {
-    return name + " " + address + " " + username;
+    return name + "  " + address + "  " + username;
   }
 }

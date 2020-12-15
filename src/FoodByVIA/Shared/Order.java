@@ -82,8 +82,7 @@ public class Order implements Serializable
 
   @Override public String toString()
   {
-    return customer + " " + orderNumber + " " + foodItems + " " + totalPrice;
-    // add is active and date
+    return customer + "  " + orderNumber + "  " + foodItems + "  " + totalPrice;
   }
 
   public int getOrdernumber()

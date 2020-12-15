@@ -10,8 +10,6 @@ public class TableReservation implements Serializable
   private String zone;
   private String username;
   private LocalDate localDate;
-  private boolean isAvailable;
-  private int day, month, year;
 
 
   public TableReservation(String user, LocalDate localDate, int numberOfPeople, String zone, String tableID){
@@ -77,7 +75,7 @@ public class TableReservation implements Serializable
 
   @Override public String toString()
   {
-    return "tableID: " + tableID + " number of people: " + numberOfPeople +
-        " zone: " + zone + " Date: " + localDate;
+    return "Table ID:  " + tableID + "  Capacity:   " + numberOfPeople +
+        "   zone:   " + zone + "   Date:  " + localDate;
   }
 }
