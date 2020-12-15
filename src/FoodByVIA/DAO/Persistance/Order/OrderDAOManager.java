@@ -21,28 +21,31 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
     int ordernumber=0;
     try(Connection connection = getConnection())
     {
+      //prepared statement for inserting into orders
       PreparedStatement preparedStatement =
           connection.prepareStatement(
               "insert into Orders(username, dateTo) values(?,?);",Statement.RETURN_GENERATED_KEYS);
       preparedStatement.setString(1,order.getCustomer());
-      //preparedStatement.setBoolean(2,order.isActive());
       preparedStatement.setObject(2,order.getDate());
       //execute prepared statement and get ordernumber from it
 
       preparedStatement.execute();
+
+      // res contains the auto generated id of the inserted order
       ResultSet res = preparedStatement.getGeneratedKeys();
-      // add all fooditems and refer them to ordernumber Orders_FoodItems
       while (res.next())
       {
         System.out.println(res.getInt(1));
         ordernumber = res.getInt(1);
       }
+      // set the ordernumber that was created in the database
       order.setOrderNumber(ordernumber);
     }
     catch(SQLException throwables){
       throwables.printStackTrace();
     }
 
+    // if valid ordernumber, count how many times each food items appear in the order and set amount to that number
     if(ordernumber!=0)
     {
       ArrayList<FoodItem> added = new ArrayList<>();
@@ -59,6 +62,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
   }
 
 
+  // inserts the ordernumber, fooditemname and amount into Orders_FoodItems
   private void createOrderFood(FoodItem foodItem, int ordernumber, int amount){
     try(java.sql.Connection connection = getConnection())
     {
@@ -81,6 +85,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
 
     try (java.sql.Connection connection = getConnection())
     {
+      //We are using an implicit join on orders, foodItem and Orders_FoodItems to get all information about the orders
       PreparedStatement preparedStatement = connection.prepareStatement(
           "select activeorder, orders.ordernumber, username, dateto, fooditem.fooditemname, amount, fooditemprice, "
               + "fooditemdescription from orders, orders_FoodItems, Fooditem WHERE "
@@ -90,6 +95,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
 
       ResultSet resultSet = preparedStatement.executeQuery();
 
+
       while (resultSet.next())
       {
         boolean found = false;
@@ -97,7 +103,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
 
         for (int i = 0; i < orders.size(); i++)
         {
-
+          // if an order with the ordernumber already exists, add foodItem to it
           if (orders.get(i).getOrdernumber() == ordernr)
           {
             FoodItem foodItem = new FoodItem(resultSet.getString("fooditemname"),
@@ -110,6 +116,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
           }
         }
 
+        // if it's a new ordernumber, create an order object for it and then add foodItem
         if (!found)
         {
 
@@ -140,6 +147,7 @@ public class OrderDAOManager extends FoodByVIA.DAO.Persistance.Connection
   {
     try(java.sql.Connection connection = getConnection())
     {
+      //set activeorder to false for the given ordernumber
       PreparedStatement preparedStatement =
           connection.prepareStatement("update orders set activeorder = false where ordernumber = ?;");
       preparedStatement.setInt(1, order.getOrdernumber());
